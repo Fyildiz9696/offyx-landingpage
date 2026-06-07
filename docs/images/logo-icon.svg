@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <!-- Outer ring — Ink -->
+  <circle cx="24" cy="24" r="19" stroke="#352E28" stroke-width="2" fill="#FBF7F1"/>
+  <!-- Inner copper accent ring -->
+  <circle cx="24" cy="24" r="11" stroke="#B5632A" stroke-width="1.2" fill="none" opacity="0.4"/>
+  <!-- Center copper dot — address pin -->
+  <circle cx="24" cy="24" r="4.5" fill="#B5632A"/>
+  <!-- Top-right copper accent -->
+  <circle cx="38" cy="10" r="3" fill="#B5632A"/>
+</svg>
