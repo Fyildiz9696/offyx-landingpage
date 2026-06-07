@@ -5,10 +5,12 @@ import { defineConfig } from "astro/config";
 import sitemap from "@astrojs/sitemap";
 import icon from "astro-icon";
 
+// Use base path only for GitHub Pages production build
+const isProd = process.env.NODE_ENV === "production";
+
 export default defineConfig({
-  // Set to your production domain before going live
   site: "https://fyildiz9696.github.io",
-  base: "/offyx-landingpage/",
+  base: isProd ? "/offyx-landingpage/" : "/",
 
   // Static output — no server-side rendering
   output: "static",
