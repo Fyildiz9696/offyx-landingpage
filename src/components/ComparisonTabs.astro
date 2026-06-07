@@ -1,0 +1,175 @@
+---
+/**
+ * ComparisonTabs.astro — Tabs mit ausführlicher Feature-Liste pro Paket
+ * AUFGABE C: Tab-basierte Vergleichsansicht
+ */
+import { getComparisonData } from "@data/hero-finder";
+
+const { tabs } = getComparisonData();
+---
+
+<section class="section comparison" aria-labelledby="comparison-heading">
+  <div class="container">
+    <div class="section-header centered">
+      <h2 class="section-heading" id="comparison-heading">Alle Pakete im Detail</h2>
+      <p class="section-intro">Wähle ein Paket – und sieh alle Features auf einen Blick.</p>
+    </div>
+
+    <!-- Tab-Navigation -->
+    <nav class="comparison__nav" role="tablist" aria-label="Paket-Vergleich">
+      {tabs.map((tab, i) => (
+        <button
+          class:list={["comparison__tab", { "comparison__tab--active": i === 0, "comparison__tab--recommended": tab.recommended }]}
+          role="tab"
+          aria-selected={String(i === 0)}
+          aria-controls={`tabpanel-${tab.id}`}
+          id={`tab-${tab.id}`}
+          data-tab={tab.id}
+        >
+          {tab.recommended && <span class="comparison__tab-badge">★</span>}
+          <span class="comparison__tab-name">{tab.name}</span>
+          <span class="comparison__tab-price">{tab.price}<small>{tab.priceNote}</small></span>
+        </button>
+      ))}
+    </nav>
+
+    <!-- Tab-Panels -->
+    {tabs.map((tab, i) => (
+      <div
+        class:list={["comparison__panel", { "comparison__panel--active": i === 0 }]}
+        role="tabpanel"
+        id={`tabpanel-${tab.id}`}
+        aria-labelledby={`tab-${tab.id}`}
+      >
+        <div class="comparison__panel-card reveal">
+          <div class="comparison__panel-header">
+            <h3 class="comparison__panel-name">{tab.name}</h3>
+            <div class="comparison__panel-price">
+              <span class="comparison__panel-amount">{tab.price}</span>
+              <span class="comparison__panel-note">{tab.priceNote}</span>
+            </div>
+          </div>
+
+          <ul class="comparison__features" role="list">
+            {tab.features.map((f, j) => (
+              <li class="comparison__feature">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                <span>{f}</span>
+              </li>
+            ))}
+          </ul>
+
+          <a class="btn btn--primary comparison__cta" href={tab.ctaHref}>{tab.cta}</a>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>(".comparison__tab").forEach((tabBtn) => {
+    tabBtn.addEventListener("click", () => {
+      const tabId = tabBtn.dataset.tab!;
+      // Update tabs
+      document.querySelectorAll(".comparison__tab").forEach((t) => {
+        t.setAttribute("aria-selected", "false");
+        t.classList.remove("comparison__tab--active");
+      });
+      tabBtn.setAttribute("aria-selected", "true");
+      tabBtn.classList.add("comparison__tab--active");
+      // Update panels
+      document.querySelectorAll(".comparison__panel").forEach((p) => {
+        p.classList.remove("comparison__panel--active");
+      });
+      document.getElementById(`tabpanel-${tabId}`)?.classList.add("comparison__panel--active");
+    });
+  });
+</script>
+
+<style>
+  .comparison { background: var(--color-surface); }
+
+  /* ── Tab Navigation ─────────────────────────────────── */
+  .comparison__nav {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+    max-width: 700px;
+    margin-inline: auto;
+    margin-bottom: 1.5rem;
+  }
+
+  .comparison__tab {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.75rem 0.5rem;
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: var(--font-body);
+    transition: border-color 0.2s, background 0.2s;
+    min-height: 44px;
+    text-align: center;
+  }
+  .comparison__tab:hover { border-color: var(--color-primary); }
+  .comparison__tab--active {
+    border-color: var(--color-primary);
+    background: rgba(181,99,42,0.08);
+    box-shadow: 0 0 0 1px var(--color-primary);
+  }
+  .comparison__tab--recommended .comparison__tab-name { font-weight: 700; }
+
+  .comparison__tab-badge {
+    position: absolute; top: -8px; right: -6px; background: var(--color-primary);
+    color: var(--color-on-primary); font-size: 0.6rem; font-weight: 700;
+    width: 20px; height: 20px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .comparison__tab-name {
+    font-size: 0.7rem; font-weight: 600; color: var(--color-text); line-height: 1.2;
+  }
+  .comparison__tab-price {
+    font-size: 0.78rem; font-weight: 700; color: var(--color-primary); line-height: 1;
+  }
+  .comparison__tab-price small { font-size: 0.65rem; font-weight: 400; color: var(--color-text-muted); margin-left: 2px; }
+
+  /* ── Panel ──────────────────────────────────────────── */
+  .comparison__panel { display: none; }
+  .comparison__panel--active { display: block; }
+
+  .comparison__panel-card {
+    max-width: 620px; margin-inline: auto;
+    background: var(--color-background); border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg); padding: 2rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .comparison__panel-header {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;
+  }
+  .comparison__panel-name { font-size: 1.3rem; font-weight: 600; color: var(--color-text); }
+  .comparison__panel-amount { font-family: var(--font-heading); font-size: 1.8rem; font-weight: 700; color: var(--color-primary); }
+  .comparison__panel-note { font-size: 0.85rem; color: var(--color-text-muted); margin-left: 4px; }
+
+  .comparison__features { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem; }
+  .comparison__feature {
+    display: flex; align-items: flex-start; gap: 0.6rem;
+    font-size: 0.95rem; color: var(--color-text); line-height: 1.5;
+  }
+  .comparison__feature svg { flex-shrink: 0; margin-top: 0.15rem; color: var(--color-primary); }
+
+  .comparison__cta { min-height: 44px; font-size: 0.95rem; }
+
+  /* ── Mobile ─────────────────────────────────────────── */
+  @media (max-width: 640px) {
+    .comparison__nav { grid-template-columns: repeat(2, 1fr); }
+    .comparison__tab-name { font-size: 0.68rem; }
+    .comparison__panel-header { flex-direction: column; gap: 0.25rem; }
+  }
+</style>

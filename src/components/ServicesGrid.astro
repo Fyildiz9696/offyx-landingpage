@@ -1,0 +1,346 @@
+---
+/**
+ * ServicesGrid.astro — Produkt-Cards mit Preisen, Badge & Feature-Toggle
+ * AUFGABE 3
+ */
+import { Icon } from "astro-icon/components";
+import site from "@data/site";
+
+const { sectionHeadings } = site;
+
+interface ProductCard {
+  id: string;
+  icon: string;
+  title: string;
+  price: string;
+  priceNote: string;
+  recommended?: boolean;
+  features: string[];
+  cta: string;
+  ctaHref: string;
+}
+
+const products: ProductCard[] = [
+  {
+    id: "vo-basic",
+    icon: "building",
+    title: "Virtual Office Basic",
+    price: "ab 79 €",
+    priceNote: "/Monat",
+    features: [
+      "Ladungsfähige Geschäftsadresse Berlin",
+      "Briefkastenservice inklusive",
+      "Post-Scan & digitale Bereitstellung",
+      "Für GmbH, UG & Einzelunternehmen",
+      "Postweiterleitung auf Anfrage",
+      "Keine Mindestlaufzeit",
+    ],
+    cta: "Paket anfragen",
+    ctaHref: "#contact",
+  },
+  {
+    id: "vo-plus",
+    icon: "building-2",
+    title: "Virtual Office Plus",
+    price: "ab 99 €",
+    priceNote: "/Monat",
+    recommended: true,
+    features: [
+      "Alles aus Virtual Office Basic",
+      "Post-Weiterleitung inklusive",
+      "Regelmäßige Coworking-Nutzung",
+      "Dedizierter Ansprechpartner",
+      "Flexible Laufzeit",
+      "Kaffeeflatrate zubuchbar",
+    ],
+    cta: "Empfohlenes Paket anfragen",
+    ctaHref: "#contact",
+  },
+  {
+    id: "schliessfach",
+    icon: "archive",
+    title: "Schließfach",
+    price: "ab 19 €",
+    priceNote: "/Monat",
+    features: [
+      "Sicheres Schließfach für Laptop & Unterlagen",
+      "Zugang Mo–Fr, 08:00–20:00 Uhr",
+      "Ohne Mitgliedschaft buchbar",
+      "Kombinierbar mit allen Paketen",
+      "Schlüsselübergabe bei Anmeldung",
+    ],
+    cta: "Schließfach anfragen",
+    ctaHref: "#contact",
+  },
+  {
+    id: "coworking",
+    icon: "monitor",
+    title: "Coworking",
+    price: "ab 24 €",
+    priceNote: "/Slot",
+    features: [
+      "8 ruhige Plätze – kein Großraum-Chaos",
+      "500 Mbit/s WLAN, Drucker & Küche",
+      "Einzelslot 24 €, Tagespass 39 €",
+      "Mitgliedschaften ab 169 €/Monat",
+      "5er-Paket 110 €, 10er-Paket 210 €",
+      "Kaffeeflatrate für 19 €/Mo zubuchbar",
+    ],
+    cta: "Coworking anfragen",
+    ctaHref: "#contact",
+  },
+];
+
+const VISIBLE = 4;
+---
+
+<section class="section" id="services" aria-labelledby="services-heading">
+  <div class="container">
+    <div class="section-header centered">
+      <h2 class="section-heading" id="services-heading">{sectionHeadings.services}</h2>
+      {sectionHeadings.servicesIntro && (
+        <p class="section-intro">{sectionHeadings.servicesIntro}</p>
+      )}
+    </div>
+
+    <div class="products-grid">
+      {products.map((p, i) => (
+        <article
+          class:list={["product-card reveal", { "product-card--recommended": p.recommended }]}
+          data-reveal-delay={(i % 2) + 1}
+          aria-label={p.title}
+        >
+          {p.recommended && (
+            <div class="product-card__badge" aria-label="Empfohlenes Paket">Empfohlen</div>
+          )}
+
+          <div class="product-card__icon">
+            <Icon name={`lucide:${p.icon}`} size={26} aria-hidden="true" />
+          </div>
+
+          <h3 class="product-card__title">{p.title}</h3>
+
+          <div class="product-card__price" aria-label={`Preis: ${p.price} ${p.priceNote}`}>
+            <span class="product-card__price-amount">{p.price}</span>
+            <span class="product-card__price-note">{p.priceNote}</span>
+          </div>
+
+          <ul class="product-card__features" role="list" aria-label={`Leistungen ${p.title}`}>
+            {p.features.slice(0, VISIBLE).map((f) => (
+              <li class="product-card__feature">
+                <Icon name="lucide:check" size={15} aria-hidden="true" class="feature-check" />
+                <span>{f}</span>
+              </li>
+            ))}
+            {p.features.length > VISIBLE && (
+              <>
+                <li class="product-card__more-list" id={`more-${p.id}`} hidden>
+                  <ul role="list">
+                    {p.features.slice(VISIBLE).map((f) => (
+                      <li class="product-card__feature">
+                        <Icon name="lucide:check" size={15} aria-hidden="true" class="feature-check" />
+                        <span>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+                <li>
+                  <button
+                    class="product-card__toggle"
+                    type="button"
+                    aria-expanded="false"
+                    aria-controls={`more-${p.id}`}
+                    data-toggle={p.id}
+                  >
+                    <Icon name="lucide:chevron-down" size={14} aria-hidden="true" class="toggle-icon" />
+                    <span class="toggle-label">Mehr anzeigen</span>
+                  </button>
+                </li>
+              </>
+            )}
+          </ul>
+
+          <a
+            class:list={["btn product-card__cta", p.recommended ? "btn--primary" : "btn--outline"]}
+            href={p.ctaHref}
+          >
+            {p.cta}
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>("[data-toggle]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const id = btn.dataset.toggle!;
+      const list = document.getElementById(`more-${id}`);
+      const expanded = btn.getAttribute("aria-expanded") === "true";
+      btn.setAttribute("aria-expanded", String(!expanded));
+      if (list) list.hidden = expanded;
+      btn.querySelector(".toggle-label")!.textContent = expanded ? "Mehr anzeigen" : "Weniger";
+      (btn.querySelector(".toggle-icon") as HTMLElement).style.transform =
+        expanded ? "rotate(0deg)" : "rotate(180deg)";
+    });
+  });
+</script>
+
+<style>
+  .products-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  }
+
+  /* ── Card Base ───────────────────────────────────────── */
+  .product-card {
+    position: relative;
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem 1.75rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .product-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+
+  /* ── Recommended ─────────────────────────────────────── */
+  .product-card--recommended {
+    border: 2px solid var(--color-primary);
+    box-shadow: var(--shadow-md);
+  }
+  .product-card--recommended:hover { box-shadow: var(--shadow-lg); }
+
+  /* ── Badge ───────────────────────────────────────────── */
+  .product-card__badge {
+    position: absolute;
+    top: -1px;
+    right: 1.25rem;
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 0 0 8px 8px;
+    line-height: 1.5;
+  }
+
+  /* ── Icon ────────────────────────────────────────────── */
+  .product-card__icon {
+    width: 52px;
+    height: 52px;
+    border-radius: var(--radius);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+    margin-bottom: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  /* ── Title ───────────────────────────────────────────── */
+  .product-card__title {
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+    color: var(--color-text);
+  }
+
+  /* ── Price ───────────────────────────────────────────── */
+  .product-card__price {
+    display: flex;
+    align-items: baseline;
+    gap: 0.2rem;
+    margin-bottom: 1.1rem;
+  }
+  .product-card__price-amount {
+    font-family: var(--font-heading);
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1;
+  }
+  .product-card__price-note {
+    font-size: 0.82rem;
+    color: var(--color-text-muted);
+  }
+
+  /* ── Features ────────────────────────────────────────── */
+  .product-card__features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.4rem;
+    flex: 1;
+  }
+
+  .product-card__feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.45rem;
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    line-height: 1.45;
+  }
+  .feature-check {
+    flex-shrink: 0;
+    margin-top: 0.15rem;
+    color: var(--color-primary);
+  }
+
+  .product-card__more-list[hidden] { display: none; }
+  .product-card__more-list ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.5rem; }
+
+  /* ── Toggle ──────────────────────────────────────────── */
+  .product-card__toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-primary);
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 0.25rem 0;
+    font-family: var(--font-body);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    min-height: 44px;
+  }
+  .product-card__toggle:hover { color: var(--color-primary-dark); }
+  .product-card__toggle:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  .toggle-icon { transition: transform 0.2s ease; }
+
+  /* ── CTA ─────────────────────────────────────────────── */
+  .product-card__cta {
+    margin-top: auto;
+    text-align: center;
+    min-height: 44px;
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 640px) {
+    .products-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .product-card, .toggle-icon { transition: none; }
+    .product-card:hover { transform: none; }
+  }
+</style>

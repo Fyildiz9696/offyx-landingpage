@@ -1,0 +1,126 @@
+---
+/**
+ * ContactSection.astro — Kontakt-Sektion mit Kontaktdaten
+ */
+import { Icon } from "astro-icon/components";
+import site from "@data/site";
+
+const { contact, openingHours, sectionHeadings } = site;
+---
+
+<section class="section section--surface" id="contact" aria-labelledby="contact-heading">
+  <div class="container">
+    <div class="section-header centered">
+      <h2 class="section-heading" id="contact-heading">{sectionHeadings.contact}</h2>
+      {sectionHeadings.contactIntro && (
+        <p class="section-intro">{sectionHeadings.contactIntro}</p>
+      )}
+    </div>
+
+    <div class="contact-content reveal">
+      <address class="contact-cards">
+        <a href={`tel:${contact.phone.replace(/\s/g, "")}`} class="contact-card">
+          <Icon name="lucide:phone" size={24} aria-hidden="true" />
+          <strong>Telefon</strong>
+          <span>{contact.phone}</span>
+        </a>
+
+        <a href={`mailto:${contact.email}`} class="contact-card">
+          <Icon name="lucide:mail" size={24} aria-hidden="true" />
+          <strong>E-Mail</strong>
+          <span>{contact.email}</span>
+        </a>
+
+        <div class="contact-card">
+          <Icon name="lucide:map-pin" size={24} aria-hidden="true" />
+          <strong>Adresse</strong>
+          <span>{contact.address.street}</span>
+          <span>{contact.address.zip} {contact.address.city}</span>
+        </div>
+
+        {openingHours.length > 0 && (
+          <div class="contact-card">
+            <Icon name="lucide:clock" size={24} aria-hidden="true" />
+            <strong>Öffnungszeiten</strong>
+            {openingHours.map((h) => (
+              <span>{h.days}: {h.hours}</span>
+            ))}
+          </div>
+        )}
+      </address>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-cards {
+    font-style: normal;
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 700px;
+    margin-inline: auto;
+  }
+
+  @media (max-width: 640px) {
+    .contact-cards {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .contact-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.5rem;
+    padding: 2rem 1.5rem;
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+
+  .contact-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-primary);
+  }
+
+  .contact-card [data-icon] {
+    color: var(--color-primary);
+    margin-bottom: 0.25rem;
+    transition: transform 0.3s ease;
+  }
+
+  .contact-card:hover [data-icon] {
+    transform: scale(1.1);
+  }
+
+  .contact-card strong {
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .contact-card span {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .contact-card {
+      transition: none;
+    }
+    .contact-card:hover {
+      transform: none;
+    }
+    .contact-card [data-icon] {
+      transition: none;
+    }
+    .contact-card:hover [data-icon] {
+      transform: none;
+    }
+  }
+</style>

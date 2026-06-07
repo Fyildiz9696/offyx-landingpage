@@ -1,0 +1,110 @@
+---
+/**
+ * Testimonials.astro — Kundenstimmen mit Ratings
+ */
+import { Icon } from "astro-icon/components";
+import site from "@data/site";
+
+const { testimonials, sectionHeadings } = site;
+---
+
+<section class="section section--surface" id="testimonials" aria-labelledby="testimonials-heading">
+  <div class="container">
+    <div class="section-header centered">
+      <h2 class="section-heading" id="testimonials-heading">{sectionHeadings.testimonials}</h2>
+      {sectionHeadings.testimonialsIntro && (
+        <p class="section-intro">{sectionHeadings.testimonialsIntro}</p>
+      )}
+    </div>
+
+    <div class="testimonial-grid">
+      {testimonials.map((t, idx) => (
+        <blockquote class="testimonial-card reveal" data-reveal-delay={(idx % 3) + 1}>
+          {t.rating && (
+            <div class="testimonial-card__stars" aria-label={`${t.rating} von 5 Sternen`}>
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Icon
+                  name={i < t.rating! ? "lucide:star" : "lucide:star"}
+                  size={16}
+                  class:list={[{ "star-filled": i < t.rating!, "star-empty": i >= t.rating! }]}
+                  aria-hidden="true"
+                />
+              ))}
+            </div>
+          )}
+          <p class="testimonial-card__quote">{t.quote}</p>
+          <footer class="testimonial-card__footer">
+            <cite class="testimonial-card__author">{t.author}</cite>
+            {t.role && <span class="testimonial-card__role">{t.role}</span>}
+          </footer>
+        </blockquote>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonial-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+  }
+
+  .testimonial-card {
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--color-primary);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    position: relative;
+  }
+
+  .testimonial-card::before {
+    content: "\201E";
+    position: absolute;
+    top: 1rem;
+    left: 1.25rem;
+    font-size: 3.5rem;
+    line-height: 1;
+    color: var(--color-primary);
+    opacity: 0.15;
+    pointer-events: none;
+  }
+
+  .testimonial-card__stars {
+    display: flex;
+    gap: 0.125rem;
+  }
+  .star-filled { color: var(--color-accent, #f59e0b); fill: currentColor; }
+  .star-empty { color: var(--color-border); }
+
+  .testimonial-card__quote {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    font-style: italic;
+    flex: 1;
+  }
+  .testimonial-card__quote::before {
+    content: "\201E";
+  }
+  .testimonial-card__quote::after { content: "\201C"; }
+
+  .testimonial-card__footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+  .testimonial-card__author {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .testimonial-card__role {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+</style>

@@ -1,0 +1,54 @@
+---
+interface Props {
+  variant?: "wave" | "curve" | "diagonal" | "none";
+  flip?: boolean;
+  fillColor?: string;
+}
+
+const { variant = "wave", flip = false, fillColor = "var(--color-background)" } = Astro.props;
+---
+
+{variant !== "none" && (
+  <div class:list={["section-divider", `section-divider--${variant}`, { "section-divider--flip": flip }]}>
+    {variant === "wave" && (
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,30 C240,60 480,0 720,30 C960,60 1200,0 1440,30 L1440,60 L0,60 Z" fill={fillColor} />
+      </svg>
+    )}
+    {variant === "curve" && (
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,60 Q720,0 1440,60 Z" fill={fillColor} />
+      </svg>
+    )}
+    {variant === "diagonal" && (
+      <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="0,60 1440,0 1440,60" fill={fillColor} />
+      </svg>
+    )}
+  </div>
+)}
+
+<style>
+  .section-divider {
+    width: 100%;
+    line-height: 0;
+    overflow: hidden;
+    margin-top: -1px;
+  }
+
+  .section-divider svg {
+    display: block;
+    width: 100%;
+    height: 40px;
+  }
+
+  .section-divider--flip {
+    transform: rotate(180deg);
+  }
+
+  @media (min-width: 768px) {
+    .section-divider svg {
+      height: 60px;
+    }
+  }
+</style>

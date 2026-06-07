@@ -1,0 +1,87 @@
+---
+/**
+ * 404.astro — Fehlerseite
+ *
+ * Wird bei nicht gefundenen Seiten angezeigt.
+ * Cloudflare Pages: funktioniert out of the box.
+ */
+import PageLayout from "@layouts/PageLayout.astro";
+import site from "@data/site";
+---
+
+<PageLayout
+  title="Seite nicht gefunden"
+  description="Die angeforderte Seite wurde nicht gefunden."
+  robots="noindex, nofollow"
+>
+  <section class="error-page section">
+    <div class="container error-content">
+      <div class="error-code" aria-hidden="true">404</div>
+      <h1>Seite nicht gefunden</h1>
+      <p>
+        Die gesuchte Seite existiert nicht oder wurde verschoben.
+        Vielleicht hilft Ihnen einer dieser Links weiter:
+      </p>
+      <nav class="error-links" aria-label="Hilfreiche Links">
+        <ul role="list">
+          <li><a href="/" class="btn btn--primary">Zur Startseite</a></li>
+          <li><a href="/#services" class="btn btn--outline">Unsere Leistungen</a></li>
+          <li><a href="/#contact" class="btn btn--outline">Kontakt aufnehmen</a></li>
+        </ul>
+      </nav>
+      <p class="error-contact">
+        Oder rufen Sie uns direkt an:
+        <a href={`tel:${site.contact.phone.replace(/\s/g, "")}`}>{site.contact.phone}</a>
+      </p>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .error-page {
+    display: flex;
+    align-items: center;
+    min-height: 60vh;
+  }
+
+  .error-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+    max-width: 600px;
+    margin-inline: auto;
+  }
+
+  .error-code {
+    font-size: clamp(5rem, 15vw, 9rem);
+    font-weight: 700;
+    line-height: 1;
+    color: var(--color-primary);
+    opacity: 0.15;
+  }
+
+  .error-content h1 { margin-top: -3rem; }
+
+  .error-content p {
+    color: var(--color-text-muted);
+    font-size: 1.05rem;
+  }
+
+  .error-links ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .error-contact {
+    font-size: 0.95rem;
+  }
+  .error-contact a {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+</style>

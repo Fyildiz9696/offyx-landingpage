@@ -1,0 +1,345 @@
+---
+/**
+ * Hero.astro — Hero mit Inline-Produktfinder
+ * State Machine: hero-finder.ts (pure, getestet)
+ * Kein Secondary-Link, hoher Kontrast im Finder
+ */
+import site from "@data/site";
+
+const { hero } = site;
+const hasBackground = !!hero.backgroundImage;
+---
+
+<section
+  class:list={["hero", { "hero--with-bg": hasBackground, "hero--no-image": !hasBackground }]}
+  id="hero"
+>
+  {hasBackground && (
+    <div class="hero__bg">
+      <img src={hero.backgroundImage} alt="offyx Coworking Space Berlin – Laubacher Straße 44" loading="eager" />
+    </div>
+  )}
+
+  <div class="hero__content container">
+
+    <div class="hero__text animate-in">
+      <h1 class="hero__title">Deine Geschäftsadresse in Berlin.</h1>
+      <p class="hero__subline">
+        Ladungsfähig, professionell, sofort aktiv — für GmbH, UG und Freelancer.
+      </p>
+    </div>
+
+    <!-- ── Inline-Produktfinder ────────────────────────── -->
+    <div class="finder animate-in animate-in--delay-1" id="hero-finder" aria-label="Schnellauswahl Produkt">
+
+      <!-- Stage: tiles -->
+      <div class="finder__stage" id="finder-tiles">
+        <p class="finder__label">Was suchst du?</p>
+        <div class="finder__tiles" role="list">
+
+          <button class="finder__tile" data-tile="address" type="button" aria-label="Geschäftsadresse">
+            <span class="finder__tile-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </span>
+            <span class="finder__tile-label">Geschäfts&shy;adresse</span>
+          </button>
+
+          <button class="finder__tile" data-tile="locker" type="button" aria-label="Schließfach">
+            <span class="finder__tile-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="15" x2="12" y2="18"/></svg>
+            </span>
+            <span class="finder__tile-label">Schließfach</span>
+          </button>
+
+          <button class="finder__tile" data-tile="coworking" type="button" aria-label="Coworking">
+            <span class="finder__tile-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+            </span>
+            <span class="finder__tile-label">Coworking</span>
+          </button>
+
+          <button class="finder__tile finder__tile--highlight" data-tile="plus" type="button" aria-label="Virtual Office Plus – Empfohlen">
+            <span class="finder__tile-badge">Empfohlen</span>
+            <span class="finder__tile-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </span>
+            <span class="finder__tile-label">Virtual Office Plus</span>
+          </button>
+
+        </div>
+      </div>
+
+      <!-- Stage: intermediate (address) -->
+      <div class="finder__stage finder__stage--hidden" id="finder-intermediate-address">
+        <button class="finder__back" id="back-from-address" type="button" aria-label="Zurück zur Auswahl">← Zurück</button>
+        <p class="finder__question">Möchtest du auch gelegentlich vor Ort arbeiten?</p>
+        <div class="finder__options">
+          <button class="finder__option" data-option="basic" type="button"><strong>Nein</strong> — nur die Adresse reicht mir</button>
+          <button class="finder__option" data-option="plus" type="button"><strong>Ja</strong> — Adresse + Coworking kombinieren</button>
+        </div>
+      </div>
+
+      <!-- Stage: intermediate (coworking) -->
+      <div class="finder__stage finder__stage--hidden" id="finder-intermediate-coworking">
+        <button class="finder__back" id="back-from-coworking" type="button" aria-label="Zurück zur Auswahl">← Zurück</button>
+        <p class="finder__question">Wie oft möchtest du coworken?</p>
+        <div class="finder__options">
+          <button class="finder__option" data-option="flex" type="button"><strong>Gelegentlich</strong> — 1–5× pro Monat</button>
+          <button class="finder__option" data-option="regular" type="button"><strong>Täglich</strong> — ich brauche einen festen Platz</button>
+        </div>
+      </div>
+
+      <!-- Stage: result -->
+      <div class="finder__stage finder__stage--hidden" id="finder-result">
+        <button class="finder__back" id="back-from-result" type="button" aria-label="Zurück zur Auswahl">← Andere Option wählen</button>
+        <div class="finder__result-card" id="finder-result-card"></div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+  import type { TileId, PackageId, FinderState } from "@data/hero-finder";
+  import { selectTile, selectOption, back, getPackage, INITIAL_STATE } from "@data/hero-finder";
+
+  let state: FinderState = INITIAL_STATE;
+
+  const stageEls = {
+    tiles: document.getElementById("finder-tiles")!,
+    intermediateAddress: document.getElementById("finder-intermediate-address")!,
+    intermediateCoworking: document.getElementById("finder-intermediate-coworking")!,
+    result: document.getElementById("finder-result")!,
+  };
+  const resultCard = document.getElementById("finder-result-card")!;
+
+  function render(s: FinderState) {
+    Object.values(stageEls).forEach((el) => el.classList.add("finder__stage--hidden"));
+    if (s.stage === "tiles") { stageEls.tiles.classList.remove("finder__stage--hidden"); return; }
+    if (s.stage === "intermediate") {
+      if (s.tileId === "address") stageEls.intermediateAddress.classList.remove("finder__stage--hidden");
+      if (s.tileId === "coworking") stageEls.intermediateCoworking.classList.remove("finder__stage--hidden");
+      return;
+    }
+    if (s.stage === "result") { stageEls.result.classList.remove("finder__stage--hidden"); renderResultCard(s.packageId); }
+  }
+
+  function renderResultCard(packageId: PackageId) {
+    const pkg = getPackage(packageId);
+    resultCard.innerHTML = `
+      <div class="result-card ${pkg.recommended ? "result-card--recommended" : ""}">
+        ${pkg.recommended ? '<span class="result-card__badge">Empfohlen</span>' : ""}
+        <div class="result-card__header">
+          <h3 class="result-card__name">${pkg.name}</h3>
+          <div class="result-card__price"><span class="result-card__price-amount">${pkg.price}</span><span class="result-card__price-note">${pkg.priceNote}</span></div>
+        </div>
+        <p class="result-card__persona">${pkg.personaText}</p>
+        <ul class="result-card__features" role="list">
+          ${pkg.features.map((f: string) => `<li class="result-card__feature"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>${f}</span></li>`).join("")}
+        </ul>
+        <div class="result-card__actions"><a class="btn btn--primary result-card__cta" href="${pkg.ctaHref}">${pkg.cta}</a></div>
+      </div>`;
+  }
+
+  document.querySelectorAll<HTMLButtonElement>("[data-tile]").forEach((btn) => {
+    btn.addEventListener("click", () => { state = selectTile(btn.dataset.tile as TileId); render(state); });
+  });
+  stageEls.intermediateAddress.querySelectorAll<HTMLButtonElement>("[data-option]").forEach((btn) => {
+    btn.addEventListener("click", () => { if (state.stage !== "intermediate") return; state = selectOption(state, btn.dataset.option!); render(state); });
+  });
+  stageEls.intermediateCoworking.querySelectorAll<HTMLButtonElement>("[data-option]").forEach((btn) => {
+    btn.addEventListener("click", () => { if (state.stage !== "intermediate") return; state = selectOption(state, btn.dataset.option!); render(state); });
+  });
+  ["back-from-address", "back-from-coworking", "back-from-result"].forEach((id) => {
+    document.getElementById(id)?.addEventListener("click", () => { state = back(state); render(state); });
+  });
+
+  render(state);
+</script>
+
+<style>
+  /* ── Base ────────────────────────────────────────────── */
+  .hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 90vh;
+    padding-block: 6rem 4rem;
+    overflow: hidden;
+  }
+  .hero--no-image {
+    background: linear-gradient(135deg, var(--color-background) 0%, var(--color-surface) 60%, var(--color-background) 100%);
+  }
+  .hero--with-bg { background: none; }
+
+  .hero__bg { position: absolute; inset: 0; z-index: 0; }
+  .hero__bg img { width: 100%; height: 100%; object-fit: cover; }
+  .hero__bg::after {
+    content: ""; position: absolute; inset: 0;
+    background: linear-gradient(160deg, rgba(32,24,18,0.78) 0%, rgba(53,46,40,0.55) 55%, rgba(247,241,232,0.10) 100%);
+  }
+  .hero__content { position: relative; z-index: 1; width: 100%; }
+
+  /* ── Text ────────────────────────────────────────────── */
+  .hero__title {
+    font-size: clamp(2.2rem, 5vw, 3.8rem); line-height: 1.08; font-weight: 400;
+    letter-spacing: -0.03em; margin-bottom: 0.9rem; color: #FFF7F1;
+  }
+  .hero--no-image .hero__title { color: var(--color-text); }
+
+  .hero__subline {
+    font-size: clamp(1rem, 2vw, 1.2rem); line-height: 1.6;
+    color: rgba(255,247,241,0.85); max-width: 480px; margin-bottom: 2rem;
+  }
+  .hero--no-image .hero__subline { color: var(--color-text-muted); }
+
+  /* ── Finder Container (COPPER THEME) ────────────────── */
+  .finder {
+    background: linear-gradient(135deg, rgba(140,71,28,0.85) 0%, rgba(181,99,42,0.75) 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,247,241,0.35);
+    border-radius: 16px;
+    padding: 1.5rem;
+    max-width: 620px;
+    box-shadow: 0 4px 24px rgba(181,99,42,0.25);
+  }
+  .hero--no-image .finder {
+    background: var(--color-surface);
+    border-color: var(--color-border);
+    box-shadow: var(--shadow-md);
+  }
+  .finder__stage--hidden { display: none !important; }
+
+  /* ── Label ──────────────────────────────────────────── */
+  .finder__label {
+    font-size: 0.72rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.12em; color: rgba(255,247,241,0.85); margin-bottom: 0.9rem;
+  }
+  .hero--no-image .finder__label { color: var(--color-text-muted); }
+
+  /* ── Tiles (ORANGE KONTRAST) ────────────────────────── */
+  .finder__tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; }
+
+  .finder__tile {
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    padding: 0.9rem 0.5rem;
+    background: rgba(255,247,241,0.22);
+    border: 1px solid rgba(255,247,241,0.40);
+    border-radius: 12px; cursor: pointer;
+    font-family: var(--font-body);
+    color: #FFF7F1;
+    font-weight: 600;
+    transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    min-height: 44px; position: relative;
+  }
+  .finder__tile:hover {
+    background: rgba(255,247,241,0.35);
+    border-color: #FFF7F1;
+    transform: translateY(-2px);
+  }
+  .finder__tile:focus-visible { outline: 3px solid #FFF7F1; outline-offset: 2px; }
+  .hero--no-image .finder__tile {
+    background: var(--color-surface); border-color: var(--color-border); color: var(--color-text);
+  }
+  .hero--no-image .finder__tile:hover { background: rgba(181,99,42,0.08); border-color: var(--color-primary); }
+
+  .finder__tile--highlight {
+    border-color: #FFF7F1;
+    background: rgba(255,247,241,0.32);
+  }
+  .hero--no-image .finder__tile--highlight {
+    border-color: var(--color-primary);
+    background: rgba(181,99,42,0.07);
+  }
+
+  .finder__tile-badge {
+    position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+    background: #FFF7F1; color: var(--color-primary);
+    font-size: 0.62rem; font-weight: 800; letter-spacing: 0.05em;
+    text-transform: uppercase; padding: 2px 8px; border-radius: 999px; white-space: nowrap;
+  }
+  .finder__tile-icon { color: #FFF7F1; display: flex; align-items: center; justify-content: center; }
+  .hero--no-image .finder__tile-icon { color: var(--color-primary); }
+  .finder__tile-label { font-size: 0.78rem; font-weight: 600; text-align: center; line-height: 1.3; }
+
+  /* ── Intermediate ───────────────────────────────────── */
+  .finder__back {
+    background: none; border: none; cursor: pointer; font-size: 0.8rem; font-weight: 600;
+    color: rgba(255,247,241,0.85); padding: 0; margin-bottom: 1rem;
+    font-family: var(--font-body); display: inline-flex; align-items: center; gap: 0.3rem;
+    min-height: 44px; transition: color 0.2s;
+  }
+  .finder__back:hover { color: #FFF7F1; }
+  .hero--no-image .finder__back { color: var(--color-text-muted); }
+  .hero--no-image .finder__back:hover { color: var(--color-primary); }
+
+  .finder__question {
+    font-size: 1rem; font-weight: 600; color: #FFF7F1;
+    margin-bottom: 1rem; font-family: var(--font-heading);
+  }
+  .hero--no-image .finder__question { color: var(--color-text); }
+
+  .finder__options { display: flex; flex-direction: column; gap: 0.5rem; }
+
+  .finder__option {
+    width: 100%; padding: 0.85rem 1.1rem;
+    background: rgba(255,247,241,0.22); border: 1px solid rgba(255,247,241,0.38);
+    border-radius: 10px; cursor: pointer; text-align: left;
+    font-family: var(--font-body); font-size: 0.9rem; color: #FFF7F1; font-weight: 500;
+    transition: background 0.2s, border-color 0.2s; min-height: 44px;
+  }
+  .finder__option:hover {
+    background: rgba(255,247,241,0.35);
+    border-color: #FFF7F1;
+  }
+  .finder__option:focus-visible { outline: 3px solid #FFF7F1; outline-offset: 2px; }
+  .hero--no-image .finder__option {
+    background: var(--color-surface); border-color: var(--color-border); color: var(--color-text);
+  }
+  .hero--no-image .finder__option:hover { background: rgba(181,99,42,0.07); border-color: var(--color-primary); }
+  .finder__option strong { color: #FFF7F1; }
+  .hero--no-image .finder__option strong { color: var(--color-primary); }
+
+  /* ── Result Card (MAXIMUM KONTRAST) ────────────────── */
+  .result-card {
+    position: relative;
+    background: rgba(255,247,241,0.95);
+    border: 1px solid rgba(255,247,241,0.6);
+    border-radius: 14px;
+    padding: 1.5rem;
+    color: var(--color-text);
+  }
+  .hero--no-image .result-card { background: var(--color-background); border-color: var(--color-border); }
+  .result-card--recommended { border-color: var(--color-primary); border-width: 2px; }
+
+  .result-card__badge {
+    position: absolute; top: -1px; right: 1.25rem; background: var(--color-primary);
+    color: #FFF7F1; font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 10px; border-radius: 0 0 8px 8px;
+  }
+  .result-card__header { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
+  .result-card__name { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 600; color: var(--color-text); }
+  .result-card__price { display: flex; align-items: baseline; gap: 0.2rem; }
+  .result-card__price-amount { font-size: 1.5rem; font-weight: 700; color: var(--color-primary); font-family: var(--font-heading); line-height: 1; }
+  .result-card__price-note { font-size: 0.8rem; color: var(--color-text-muted); }
+  .result-card__persona { font-size: 0.85rem; color: var(--color-text-muted); font-style: italic; margin-bottom: 1rem; line-height: 1.5; }
+  .result-card__features { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; margin-bottom: 1.25rem; }
+  .result-card__feature { display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.85rem; color: var(--color-text); line-height: 1.4; }
+  .result-card__feature svg { flex-shrink: 0; margin-top: 0.1rem; color: var(--color-primary); }
+  .result-card__actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .result-card__cta { font-size: 0.9rem; padding: 0.625rem 1.25rem; min-height: 44px; }
+
+  /* ── Mobile ─────────────────────────────────────────── */
+  @media (max-width: 640px) {
+    .hero { min-height: 100svh; padding-block: 5rem 3rem; }
+    .finder__tiles { grid-template-columns: repeat(2, 1fr); }
+    .finder { padding: 1.25rem; }
+    .result-card__header { flex-direction: column; gap: 0.25rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .finder__tile, .finder__option { transition: none; }
+    .finder__tile:hover { transform: none; }
+  }
+</style>

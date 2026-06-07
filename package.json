@@ -1,0 +1,23 @@
+{
+  "name": "kmu-mini-astro-template",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.1",
+    "@iconify-json/lucide": "^1.2.97",
+    "astro": "^6.0.4",
+    "astro-icon": "^1.1.5"
+  },
+  "devDependencies": {
+    "vitest": "^4.1.8"
+  }
+}

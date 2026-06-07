@@ -1,0 +1,91 @@
+---
+/**
+ * AboutTeaser.astro — Kurzvorstellung mit optionalem Bild
+ */
+import site from "@data/site";
+
+const { about, sectionHeadings } = site;
+---
+
+<section class="section section--surface" id="about" aria-labelledby="about-heading">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-content reveal">
+        <div class="section-accent"></div>
+        <h2 class="section-heading" id="about-heading">{sectionHeadings.about}</h2>
+        <h3 class="about-title">{about.heading}</h3>
+        <p class="about-text">{about.text}</p>
+      </div>
+      {about.image && (
+        <div class="about-image reveal">
+          <img
+            src={about.image}
+            alt={about.imageAlt || ""}
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+      )}
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-grid {
+    display: grid;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .about-title {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+  }
+
+  .about-text {
+    color: var(--color-text-muted);
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+
+  .section-accent {
+    width: 60px;
+    height: 3px;
+    background: var(--color-primary);
+    margin-bottom: 1rem;
+  }
+
+  .about-image {
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+  }
+
+  .about-image img {
+    width: 100%;
+    border-radius: var(--radius-lg);
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .about-image:hover img {
+    transform: scale(1.02);
+  }
+
+  @media (min-width: 768px) {
+    .about-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .about-image img {
+      transition: none;
+    }
+    .about-image:hover img {
+      transform: none;
+    }
+  }
+</style>

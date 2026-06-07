@@ -1,0 +1,100 @@
+---
+/**
+ * FAQ.astro — Häufige Fragen als Akkordeon (details/summary, kein JS)
+ */
+import { Icon } from "astro-icon/components";
+import site from "@data/site";
+
+const { faq, sectionHeadings } = site;
+---
+
+<section class="section" id="faq" aria-labelledby="faq-heading">
+  <div class="container">
+    <div class="section-header centered">
+      <h2 class="section-heading" id="faq-heading">{sectionHeadings.faq}</h2>
+      {sectionHeadings.faqIntro && (
+        <p class="section-intro">{sectionHeadings.faqIntro}</p>
+      )}
+    </div>
+
+    <div class="faq-list">
+      {faq.map((item) => (
+        <details class="faq-item reveal">
+          <summary class="faq-item__question">
+            <span>{item.question}</span>
+            <Icon name="lucide:chevron-down" size={20} class="faq-item__chevron" aria-hidden="true" />
+          </summary>
+          <div class="faq-item__answer">
+            <p>{item.answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-list {
+    max-width: 720px;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .faq-item {
+    background: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: box-shadow 0.2s ease, border-color 0.3s ease, background-color 0.3s ease;
+  }
+  .faq-item[open] {
+    box-shadow: var(--shadow-sm);
+    border-left: 3px solid var(--color-primary);
+    background: var(--color-surface);
+  }
+
+  .faq-item__question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.125rem 1.25rem;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--color-text);
+    list-style: none;
+    user-select: none;
+  }
+  .faq-item__question::-webkit-details-marker { display: none; }
+  .faq-item__question::marker { display: none; content: ""; }
+
+  .faq-item__chevron {
+    flex-shrink: 0;
+    color: var(--color-text-muted);
+    transition: transform 0.25s ease;
+  }
+  .faq-item[open] .faq-item__chevron {
+    transform: rotate(180deg);
+  }
+
+  .faq-item__answer {
+    padding: 0 1.25rem 1.25rem;
+  }
+  .faq-item__answer p {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .faq-item {
+      transition: none;
+    }
+    .faq-item__chevron {
+      transition: none;
+    }
+  }
+</style>

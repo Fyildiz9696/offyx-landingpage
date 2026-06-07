@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#e2e8f0"/>
+  <rect x="30" y="30" width="740" height="540" rx="12" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="8 4"/>
+  <text x="400" y="280" text-anchor="middle" font-family="system-ui, sans-serif" font-size="24" fill="#64748b">Über-uns-Bild ersetzen</text>
+  <text x="400" y="320" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" fill="#94a3b8">Empfohlen: 800 × 600 px (4:3)</text>
+  <text x="400" y="350" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#94a3b8">public/images/placeholder-about.svg</text>
+</svg>

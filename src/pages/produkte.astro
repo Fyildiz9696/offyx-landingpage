@@ -1,0 +1,52 @@
+---
+/**
+ * produkte.astro — Produkt-Detailseite mit allen Paketen
+ * Vergleichstabelle + ausführliche Produktbeschreibungen
+ */
+import PageLayout from "@layouts/PageLayout.astro";
+import ComparisonTabs from "@components/ComparisonTabs.astro";
+import site from "@data/site";
+---
+
+<PageLayout title="Produkte" description="Alle Pakete von offyx im Detail: Geschäftsadresse, Virtual Office, Schließfach & Coworking.">
+  <section class="produkte-hero">
+    <div class="container">
+      <h1 class="produkte-hero__title">Unsere Pakete im Vergleich</h1>
+      <p class="produkte-hero__sub">
+        Von der reinen Geschäftsadresse bis zum täglichen Coworking-Platz – finde das Paket, das zu deinem Business passt.
+      </p>
+    </div>
+  </section>
+
+  <ComparisonTabs />
+
+  <section class="section produkte-cta section--surface">
+    <div class="container text-center">
+      <h2 class="section-heading">Noch unsicher?</h2>
+      <p class="section-intro" style="margin-inline: auto;">Nutze unseren Produktberater und finde in 30 Sekunden das richtige Paket.</p>
+      <a class="btn btn--primary" href="/#advisor">Zum Produktberater</a>
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .produkte-hero {
+    padding-block: 4rem 3rem;
+    background: var(--color-surface);
+    text-align: center;
+  }
+  .produkte-hero__title {
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    margin-bottom: 1rem;
+    color: var(--color-text);
+  }
+  .produkte-hero__sub {
+    color: var(--color-text-muted);
+    font-size: 1.1rem;
+    max-width: 55ch;
+    margin-inline: auto;
+  }
+  .produkte-cta {
+    text-align: center;
+  }
+</style>

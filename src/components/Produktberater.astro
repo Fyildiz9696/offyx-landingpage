@@ -1,0 +1,251 @@
+---
+/**
+ * Produktberater.astro — Finder-Widget (gleiche Logik wie Hero, Paper-Ink-Look)
+ * Header: "In 30 Sekunden zum richtigen Paket →"
+ * Darunter: Tabs-Vergleichstabelle
+ */
+import site from "@data/site";
+---
+
+<section class="section advisor-section" id="advisor" aria-labelledby="advisor-heading">
+  <div class="container">
+    <div class="section-header centered">
+      <p class="advisor-eyebrow">Produktberater</p>
+      <h2 class="section-heading" id="advisor-heading">In 30 Sekunden zum richtigen Paket →</h2>
+      <p class="section-intro">Beantworte 2 Fragen – wir empfehlen dir das passende Produkt.</p>
+    </div>
+
+    <div class="finder" id="advisor-finder" aria-label="Schnellauswahl Produkt">
+
+      <!-- Stage: tiles -->
+      <div class="finder__stage" id="afinder-tiles">
+        <p class="finder__label">Was suchst du?</p>
+        <div class="finder__tiles" role="list">
+
+          <button class="finder__tile" data-tile="address" type="button" aria-label="Geschäftsadresse">
+            <span class="finder__tile-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </span>
+            <span class="finder__tile-label">Geschäfts&shy;adresse</span>
+          </button>
+
+          <button class="finder__tile" data-tile="locker" type="button" aria-label="Schließfach">
+            <span class="finder__tile-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="15" x2="12" y2="18"/></svg>
+            </span>
+            <span class="finder__tile-label">Schließfach</span>
+          </button>
+
+          <button class="finder__tile" data-tile="coworking" type="button" aria-label="Coworking">
+            <span class="finder__tile-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+            </span>
+            <span class="finder__tile-label">Coworking</span>
+          </button>
+
+          <button class="finder__tile finder__tile--highlight" data-tile="plus" type="button" aria-label="Virtual Office Plus – Empfohlen">
+            <span class="finder__tile-badge">Empfohlen</span>
+            <span class="finder__tile-icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </span>
+            <span class="finder__tile-label">Virtual Office Plus</span>
+          </button>
+
+        </div>
+      </div>
+
+      <!-- Stage: intermediate (address) -->
+      <div class="finder__stage finder__stage--hidden" id="afinder-intermediate-address">
+        <button class="finder__back" id="aback-from-address" type="button" aria-label="Zurück zur Auswahl">← Zurück</button>
+        <p class="finder__question">Möchtest du auch gelegentlich vor Ort arbeiten?</p>
+        <div class="finder__options">
+          <button class="finder__option" data-option="basic" type="button"><strong>Nein</strong> — nur die Adresse reicht mir</button>
+          <button class="finder__option" data-option="plus" type="button"><strong>Ja</strong> — Adresse + Coworking kombinieren</button>
+        </div>
+      </div>
+
+      <!-- Stage: intermediate (coworking) -->
+      <div class="finder__stage finder__stage--hidden" id="afinder-intermediate-coworking">
+        <button class="finder__back" id="aback-from-coworking" type="button" aria-label="Zurück zur Auswahl">← Zurück</button>
+        <p class="finder__question">Wie oft möchtest du coworken?</p>
+        <div class="finder__options">
+          <button class="finder__option" data-option="flex" type="button"><strong>Gelegentlich</strong> — 1–5× pro Monat</button>
+          <button class="finder__option" data-option="regular" type="button"><strong>Täglich</strong> — ich brauche einen festen Platz</button>
+        </div>
+      </div>
+
+      <!-- Stage: result -->
+      <div class="finder__stage finder__stage--hidden" id="afinder-result">
+        <button class="finder__back" id="aback-from-result" type="button" aria-label="Zurück zur Auswahl">← Andere Option wählen</button>
+        <div class="finder__result-card" id="afinder-result-card"></div>
+      </div>
+
+    </div>
+    <!-- /finder -->
+
+  </div>
+</section>
+
+<script>
+  import type { TileId, PackageId, FinderState } from "@data/hero-finder";
+  import { selectTile, selectOption, back, getPackage, INITIAL_STATE } from "@data/hero-finder";
+
+  let state: FinderState = INITIAL_STATE;
+
+  const stageEls = {
+    tiles: document.getElementById("afinder-tiles")!,
+    intermediateAddress: document.getElementById("afinder-intermediate-address")!,
+    intermediateCoworking: document.getElementById("afinder-intermediate-coworking")!,
+    result: document.getElementById("afinder-result")!,
+  };
+  const resultCard = document.getElementById("afinder-result-card")!;
+
+  function render(s: FinderState) {
+    Object.values(stageEls).forEach((el) => el.classList.add("finder__stage--hidden"));
+    if (s.stage === "tiles") { stageEls.tiles.classList.remove("finder__stage--hidden"); return; }
+    if (s.stage === "intermediate") {
+      if (s.tileId === "address") stageEls.intermediateAddress.classList.remove("finder__stage--hidden");
+      if (s.tileId === "coworking") stageEls.intermediateCoworking.classList.remove("finder__stage--hidden");
+      return;
+    }
+    if (s.stage === "result") { stageEls.result.classList.remove("finder__stage--hidden"); renderResultCard(s.packageId); }
+  }
+
+  function renderResultCard(packageId: PackageId) {
+    const pkg = getPackage(packageId);
+    resultCard.innerHTML = `
+      <div class="result-card ${pkg.recommended ? "result-card--recommended" : ""}">
+        ${pkg.recommended ? '<span class="result-card__badge">Empfohlen</span>' : ""}
+        <div class="result-card__header">
+          <h3 class="result-card__name">${pkg.name}</h3>
+          <div class="result-card__price"><span class="result-card__price-amount">${pkg.price}</span><span class="result-card__price-note">${pkg.priceNote}</span></div>
+        </div>
+        <p class="result-card__persona">${pkg.personaText}</p>
+        <ul class="result-card__features" role="list">
+          ${pkg.features.map((f: string) => `<li class="result-card__feature"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span>${f}</span></li>`).join("")}
+        </ul>
+        <div class="result-card__actions"><a class="btn btn--primary result-card__cta" href="${pkg.ctaHref}">${pkg.cta}</a></div>
+      </div>`;
+  }
+
+  document.querySelectorAll("#advisor-finder [data-tile]").forEach((btn) => {
+    btn.addEventListener("click", () => { state = selectTile((btn as HTMLButtonElement).dataset.tile as TileId); render(state); });
+  });
+  stageEls.intermediateAddress.querySelectorAll("[data-option]").forEach((btn) => {
+    btn.addEventListener("click", () => { if (state.stage !== "intermediate") return; state = selectOption(state, (btn as HTMLButtonElement).dataset.option!); render(state); });
+  });
+  stageEls.intermediateCoworking.querySelectorAll("[data-option]").forEach((btn) => {
+    btn.addEventListener("click", () => { if (state.stage !== "intermediate") return; state = selectOption(state, (btn as HTMLButtonElement).dataset.option!); render(state); });
+  });
+  ["aback-from-address", "aback-from-coworking", "aback-from-result"].forEach((id) => {
+    document.getElementById(id)?.addEventListener("click", () => { state = back(state); render(state); });
+  });
+
+  render(state);
+</script>
+
+<style>
+  /* ── Section ─────────────────────────────────────────── */
+  .advisor-section { background: var(--color-secondary, #EFE6DA); }
+
+  /* ── Finder Container ────────────────────────────────── */
+  .finder {
+    max-width: 620px; margin-inline: auto;
+    background: var(--color-background); border: 1px solid var(--color-border);
+    border-radius: 16px; padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+  }
+  .finder__stage--hidden { display: none !important; }
+
+  /* ── Label ───────────────────────────────────────────── */
+  .finder__label {
+    font-size: 0.72rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--color-text-muted); margin-bottom: 0.9rem;
+  }
+
+  /* ── Tiles ───────────────────────────────────────────── */
+  .finder__tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; }
+
+  .finder__tile {
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    padding: 0.9rem 0.5rem; background: var(--color-surface);
+    border: 1px solid var(--color-border); border-radius: 12px; cursor: pointer;
+    font-family: var(--font-body); color: var(--color-text);
+    transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    min-height: 44px; position: relative;
+  }
+  .finder__tile:hover { background: rgba(181,99,42,0.08); border-color: var(--color-primary); transform: translateY(-2px); }
+  .finder__tile:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 2px; }
+
+  .finder__tile--highlight { border-color: var(--color-primary); background: rgba(181,99,42,0.07); }
+
+  .finder__tile-badge {
+    position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+    background: var(--color-primary); color: var(--color-on-primary);
+    font-size: 0.62rem; font-weight: 700; letter-spacing: 0.05em;
+    text-transform: uppercase; padding: 2px 8px; border-radius: 999px; white-space: nowrap;
+  }
+  .finder__tile-icon { color: var(--color-primary); display: flex; align-items: center; justify-content: center; }
+  .finder__tile-label { font-size: 0.78rem; font-weight: 600; text-align: center; line-height: 1.3; color: var(--color-text); }
+
+  /* ── Intermediate ────────────────────────────────────── */
+  .finder__back {
+    background: none; border: none; cursor: pointer; font-size: 0.8rem; font-weight: 600;
+    color: var(--color-text-muted); padding: 0; margin-bottom: 1rem;
+    font-family: var(--font-body); display: inline-flex; align-items: center; gap: 0.3rem;
+    min-height: 44px; transition: color 0.2s;
+  }
+  .finder__back:hover { color: var(--color-primary); }
+
+  .finder__question {
+    font-size: 1rem; font-weight: 600; color: var(--color-text);
+    margin-bottom: 1rem; font-family: var(--font-heading);
+  }
+
+  .finder__options { display: flex; flex-direction: column; gap: 0.5rem; }
+
+  .finder__option {
+    width: 100%; padding: 0.85rem 1.1rem; background: var(--color-surface);
+    border: 1px solid var(--color-border); border-radius: 10px; cursor: pointer; text-align: left;
+    font-family: var(--font-body); font-size: 0.9rem; color: var(--color-text);
+    transition: background 0.2s, border-color 0.2s; min-height: 44px;
+  }
+  .finder__option:hover { background: rgba(181,99,42,0.07); border-color: var(--color-primary); }
+  .finder__option:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 2px; }
+  .finder__option strong { color: var(--color-primary); }
+
+  /* ── Result Card ─────────────────────────────────────── */
+  .result-card {
+    position: relative; background: var(--color-surface);
+    border: 1px solid var(--color-border); border-radius: 14px; padding: 1.5rem;
+  }
+  .result-card--recommended { border-color: var(--color-primary); border-width: 2px; }
+
+  .result-card__badge {
+    position: absolute; top: -1px; right: 1.25rem; background: var(--color-primary);
+    color: var(--color-on-primary); font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 10px; border-radius: 0 0 8px 8px;
+  }
+  .result-card__header { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
+  .result-card__name { font-family: var(--font-heading); font-size: 1.1rem; font-weight: 600; color: var(--color-text); }
+  .result-card__price { display: flex; align-items: baseline; gap: 0.2rem; }
+  .result-card__price-amount { font-size: 1.5rem; font-weight: 700; color: var(--color-primary); font-family: var(--font-heading); line-height: 1; }
+  .result-card__price-note { font-size: 0.8rem; color: var(--color-text-muted); }
+  .result-card__persona { font-size: 0.85rem; color: var(--color-text-muted); font-style: italic; margin-bottom: 1rem; line-height: 1.5; }
+  .result-card__features { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; margin-bottom: 1.25rem; }
+  .result-card__feature { display: flex; align-items: flex-start; gap: 0.5rem; font-size: 0.85rem; color: var(--color-text-muted); line-height: 1.4; }
+  .result-card__feature svg { flex-shrink: 0; margin-top: 0.1rem; color: var(--color-primary); }
+  .result-card__actions { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .result-card__cta { font-size: 0.9rem; padding: 0.625rem 1.25rem; min-height: 44px; }
+
+  /* ── Mobile ──────────────────────────────────────────── */
+  @media (max-width: 640px) {
+    .finder__tiles { grid-template-columns: repeat(2, 1fr); }
+    .finder { padding: 1.25rem; }
+    .result-card__header { flex-direction: column; gap: 0.25rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .finder__tile { transition: none; }
+    .finder__tile:hover { transform: none; }
+  }
+</style>

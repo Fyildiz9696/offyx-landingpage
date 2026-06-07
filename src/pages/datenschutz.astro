@@ -1,0 +1,247 @@
+---
+/**
+ * datenschutz.astro — Datenschutzerklärung (Pflichtseite)
+ *
+ * ACHTUNG:  WICHTIG: Diese Seite enthält NUR eine Vorlagen-Struktur!
+ * Vor dem Go-Live MUSS die Datenschutzerklärung:
+ * - Mit echten Kundendaten vervollständigt werden
+ * - An die tatsächlich eingesetzten Tools/Services angepasst werden
+ * - Von einem Rechtsanwalt oder über einen Datenschutz-Generator geprüft werden
+ *
+ * Hinweis: Automatisch generierte Datenschutzerklärungen ersetzen keine
+ * Rechtsberatung. Empfehlung: datenschutzbeauftragter.de oder eRecht24.
+ */
+import PageLayout from "@layouts/PageLayout.astro";
+import site from "@data/site";
+---
+
+<PageLayout
+  title="Datenschutz"
+  description="Datenschutzerklärung"
+  robots="noindex, nofollow"
+>
+  <section class="page-hero section--surface">
+    <div class="container">
+      <h1>Datenschutzerklärung</h1>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container legal-content">
+
+      <div class="legal-notice">
+        <p>
+          ACHTUNG: <strong>Hinweis:</strong> Diese Seite ist eine strukturierte Vorlage.
+          Alle mit <code>[TODO]</code> markierten Abschnitte müssen vor dem Go-Live
+          vollständig und korrekt ausgefüllt werden. Die Datenschutzerklärung muss
+          an die tatsächlich genutzten Dienste angepasst und rechtlich geprüft werden.
+        </p>
+      </div>
+
+      <!-- ── 1. Verantwortlicher ─────────────────────────────────────── -->
+      <h2>1. Verantwortlicher</h2>
+      <p>
+        Verantwortlich im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:
+      </p>
+      <address>
+        <p>{site.company}</p>
+        <p>[TODO: Rechtsform eintragen]</p>
+        <p>{site.contact.address.street}</p>
+        <p>{site.contact.address.zip} {site.contact.address.city}</p>
+        <p>Telefon: {site.contact.phone}</p>
+        <p>E-Mail: <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a></p>
+      </address>
+
+      <!-- ── 2. Datenschutzbeauftragter ─────────────────────────────── -->
+      <h2>2. Datenschutzbeauftragter</h2>
+      <p>
+        [TODO: Falls ein Datenschutzbeauftragter benannt werden muss (gemäß Art. 37 DSGVO),
+        dessen Kontaktdaten hier eintragen. Andernfalls diesen Abschnitt entfernen oder
+        formulieren: „Ein Datenschutzbeauftragter ist nicht benannt, da die gesetzlichen
+        Voraussetzungen hierfür nicht vorliegen."]
+      </p>
+
+      <!-- ── 3. Hosting ──────────────────────────────────────────────── -->
+      <h2>3. Hosting</h2>
+      <p>
+        [TODO: Hosting-Anbieter eintragen. Beispiele:]
+      </p>
+      <ul>
+        <li>
+          <strong>Cloudflare Pages:</strong> Cloudflare, Inc., 101 Townsend St., San Francisco, CA 94107, USA.
+          Datenschutzerklärung: <a href="https://www.cloudflare.com/de-de/privacypolicy/" target="_blank" rel="noopener noreferrer">cloudflare.com/privacypolicy</a>.
+          Datenübertragung in die USA auf Basis der Standardvertragsklauseln der EU-Kommission.
+        </li>
+        <li>
+          <strong>Firebase Hosting:</strong> Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland.
+          Datenschutzerklärung: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a>.
+        </li>
+        <li>
+          <strong>GitHub Pages:</strong> GitHub, Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA.
+          Datenschutzerklärung: <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer">GitHub Privacy Statement</a>.
+        </li>
+      </ul>
+      <p>[TODO: Nicht zutreffende Anbieter entfernen. Auftragsverarbeitungsvertrag (AVV) prüfen.]</p>
+
+      <!-- ── 4. Server-Logs ──────────────────────────────────────────── -->
+      <h2>4. Server-Logfiles</h2>
+      <p>
+        Der Hosting-Anbieter erhebt und speichert automatisch Informationen in Server-Logfiles,
+        die Ihr Browser übermittelt. Dies sind:
+      </p>
+      <ul>
+        <li>Browsertyp und Browserversion</li>
+        <li>Verwendetes Betriebssystem</li>
+        <li>Referrer URL</li>
+        <li>Hostname des zugreifenden Rechners</li>
+        <li>Uhrzeit der Serveranfrage</li>
+        <li>IP-Adresse (ggf. anonymisiert)</li>
+      </ul>
+      <p>
+        Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der
+        Sicherheit und Funktion der Website). Die Daten werden nicht mit anderen
+        Datenquellen zusammengeführt und nach [TODO: Speicherdauer, z. B. 30 Tage] gelöscht.
+      </p>
+
+      <!-- ── 5. Kontaktformular & E-Mail ────────────────────────────── -->
+      <h2>5. Kontaktformular und E-Mail-Kontakt</h2>
+      <p>
+        Wenn Sie uns per Kontaktformular oder E-Mail kontaktieren, werden Ihre Angaben
+        (Name, E-Mail-Adresse, Nachrichteninhalt sowie weitere freiwillig gemachte Angaben)
+        zur Bearbeitung der Anfrage und für mögliche Anschlussfragen gespeichert.
+      </p>
+      <p>
+        Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO (Vertragserfüllung / vorvertragliche
+        Maßnahmen) oder Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse).
+      </p>
+      <p>
+        [TODO: Falls ein externer Formular-Dienst genutzt wird (z. B. Formspree, Basin),
+        diesen hier benennen und dessen Datenschutzhinweise verlinken.
+        AVV mit dem Anbieter abschließen!]
+      </p>
+
+      <!-- ── 6. Cookies ─────────────────────────────────────────────── -->
+      <h2>6. Cookies</h2>
+      <p>
+        Diese Website setzt [TODO: keine / technisch notwendige / Marketing-] Cookies ein.
+        [TODO: Falls keine Cookies: „Diese Website verwendet keine Cookies."]
+      </p>
+      <p>
+        [TODO: Falls Cookies vorhanden: Art, Zweck, Speicherdauer und Rechtsgrundlage
+         für jeden Cookie-Typ auflisten. Einwilligungsbannerpflicht prüfen (TTDSG / ePrivacy).]
+      </p>
+
+      <!-- ── 7. Analyse / Tracking ──────────────────────────────────── -->
+      <h2>7. Analyse und Tracking</h2>
+      <p>
+        [TODO: Falls kein Tracking eingesetzt wird: „Diese Website verwendet keine
+        Analyse- oder Tracking-Werkzeuge."]
+      </p>
+      <p>
+        [TODO: Falls Google Analytics, Plausible, Matomo o. ä. verwendet wird:
+        Dienst benennen, Zweck, Rechtsgrundlage und Opt-out-Möglichkeit beschreiben.
+        Bei Google Analytics: IP-Anonymisierung, AVV, US-Datentransfer adressieren.]
+      </p>
+
+      <!-- ── 8. Externe Inhalte ──────────────────────────────────────── -->
+      <h2>8. Externe Inhalte</h2>
+      <p>
+        [TODO: Falls externe Inhalte eingebunden sind (Google Maps, YouTube, Fonts,
+        Social-Media-Buttons etc.): jeden Dienst einzeln benennen, Datentransfers und
+        Rechtsgrundlagen aufführen. Bei Einbindung Google Maps: eigenen Abschnitt erstellen.
+        Falls keine externen Inhalte: diesen Abschnitt entfernen.]
+      </p>
+
+      <!-- ── 9. Betroffenenrechte ────────────────────────────────────── -->
+      <h2>9. Ihre Rechte als betroffene Person</h2>
+      <p>Ihnen stehen nach der DSGVO folgende Rechte zu:</p>
+      <ul>
+        <li><strong>Recht auf Auskunft</strong> (Art. 15 DSGVO): Auskunft über Ihre gespeicherten Daten</li>
+        <li><strong>Recht auf Berichtigung</strong> (Art. 16 DSGVO): Korrektur unrichtiger Daten</li>
+        <li><strong>Recht auf Löschung</strong> (Art. 17 DSGVO): „Recht auf Vergessenwerden"</li>
+        <li><strong>Recht auf Einschränkung</strong> (Art. 18 DSGVO): Einschränkung der Verarbeitung</li>
+        <li><strong>Recht auf Datenübertragbarkeit</strong> (Art. 20 DSGVO)</li>
+        <li><strong>Widerspruchsrecht</strong> (Art. 21 DSGVO): Widerspruch gegen die Verarbeitung</li>
+        <li><strong>Widerruf der Einwilligung</strong> (Art. 7 Abs. 3 DSGVO)</li>
+      </ul>
+      <p>
+        Zur Ausübung Ihrer Rechte wenden Sie sich bitte an:
+        <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>
+      </p>
+      <p>
+        Unbeschadet anderweitiger verwaltungsrechtlicher oder gerichtlicher Rechtsbehelfe
+        steht Ihnen das Recht auf Beschwerde bei einer Aufsichtsbehörde zu. Zuständige
+        Aufsichtsbehörde: [TODO: Datenschutzaufsichtsbehörde des jeweiligen Bundeslandes eintragen].
+      </p>
+
+      <!-- ── 10. Änderungen ─────────────────────────────────────────── -->
+      <h2>10. Änderungen dieser Datenschutzerklärung</h2>
+      <p>
+        Wir behalten uns vor, diese Datenschutzerklärung zu aktualisieren, um sie an
+        geänderte rechtliche Anforderungen oder Änderungen unserer Dienste anzupassen.
+        Die jeweils aktuelle Version ist unter dieser URL abrufbar.
+      </p>
+      <p>Stand: [TODO: Datum der letzten Überarbeitung eintragen]</p>
+
+    </div>
+  </section>
+</PageLayout>
+
+<style>
+  .page-hero {
+    padding-block: 3rem;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .legal-content {
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .legal-notice {
+    background: #fef3c7;
+    border: 1px solid #fbbf24;
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .legal-content h2 {
+    font-size: 1.4rem;
+    margin-top: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .legal-content h3 {
+    font-size: 1.05rem;
+    margin-top: 1rem;
+  }
+
+  .legal-content p,
+  .legal-content address {
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    font-style: normal;
+  }
+
+  .legal-content address p { margin-bottom: 0.1rem; }
+  .legal-content a { color: var(--color-primary); }
+
+  .legal-content ul {
+    padding-left: 1.5rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+  }
+  .legal-content li { margin-bottom: 0.3rem; }
+
+  .legal-content code {
+    background: var(--color-surface);
+    padding: 0.1em 0.4em;
+    border-radius: 3px;
+    font-size: 0.85em;
+  }
+</style>

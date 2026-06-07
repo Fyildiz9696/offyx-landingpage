@@ -1,0 +1,140 @@
+---
+/**
+ * Process.astro — Ablauf in nummerierten Schritten mit Icons
+ */
+import { Icon } from "astro-icon/components";
+import site from "@data/site";
+
+const { process: steps, sectionHeadings } = site;
+---
+
+<section class="section" id="process" aria-labelledby="process-heading">
+  <div class="container">
+    <div class="section-header centered">
+      <h2 class="section-heading" id="process-heading">{sectionHeadings.process}</h2>
+      {sectionHeadings.processIntro && (
+        <p class="section-intro">{sectionHeadings.processIntro}</p>
+      )}
+    </div>
+
+    <div class="process-steps">
+      {steps.map((step, i) => (
+        <div class="process-step reveal" data-reveal-delay={(i % 3) + 1}>
+          <div class="process-step__marker">
+            <div class="process-step__icon">
+              <Icon name={`lucide:${step.icon}`} size={24} aria-hidden="true" />
+            </div>
+            <span class="process-step__number">{String(i + 1).padStart(2, "0")}</span>
+          </div>
+          {i < steps.length - 1 && <div class="process-step__connector" aria-hidden="true" />}
+          <div class="process-step__content">
+            <h3 class="process-step__title">{step.title}</h3>
+            <p class="process-step__text">{step.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .process-steps {
+    --_step-gap: 2rem;
+    --_marker-col: 4rem;
+    --_icon-size: 3.25rem;
+    display: grid;
+    gap: var(--_step-gap);
+    grid-template-columns: 1fr;
+    max-width: 600px;
+    margin-inline: auto;
+  }
+
+  .process-step {
+    display: grid;
+    grid-template-columns: var(--_marker-col) 1fr;
+    gap: 1.25rem;
+    position: relative;
+  }
+
+  .process-step__marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.375rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .process-step__icon {
+    width: var(--_icon-size);
+    height: var(--_icon-size);
+    border-radius: 50%;
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .process-step__number {
+    font-size: 0.75rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    color: var(--color-on-primary);
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .process-step__connector {
+    position: absolute;
+    left: calc(var(--_marker-col) / 2);
+    top: calc(var(--_icon-size) + 0.5rem);
+    bottom: calc(var(--_step-gap) * -0.625);
+    width: 2px;
+    background: var(--color-border);
+    transform: translateX(-50%);
+  }
+
+  .process-step__content {
+    padding-top: 0.5rem;
+  }
+
+  .process-step__title {
+    font-size: 1.1rem;
+    margin-bottom: 0.375rem;
+  }
+
+  .process-step__text {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  @media (min-width: 768px) {
+    .process-steps {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      max-width: 100%;
+      gap: 1.5rem;
+    }
+    .process-step {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 0;
+    }
+    .process-step__marker {
+      margin-inline: auto;
+      margin-bottom: 1rem;
+    }
+    .process-step__content {
+      padding-top: 0;
+    }
+    .process-step__connector {
+      display: none;
+    }
+  }
+</style>
