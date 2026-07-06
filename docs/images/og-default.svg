@@ -1,7 +1,52 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
-  <rect width="1200" height="630" fill="#f8fafc"/>
-  <rect x="40" y="40" width="1120" height="550" rx="16" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
-  <text x="600" y="280" text-anchor="middle" font-family="system-ui, sans-serif" font-size="48" font-weight="700" fill="#1e293b">Firmenname</text>
-  <text x="600" y="340" text-anchor="middle" font-family="system-ui, sans-serif" font-size="24" fill="#64748b">Ihr Slogan hier</text>
-  <text x="600" y="520" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" fill="#94a3b8">OG-Image ersetzen: public/images/og-default.svg</text>
+  <!-- offyx — OG Default Image -->
+  <!-- Colors: Ink #352E28 · Copper #B5632A · Cream #FBF7F1 -->
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#FBF7F1"/>
+
+  <!-- Copper accent border lines -->
+  <line x1="0" y1="8" x2="1200" y2="8" stroke="#B5632A" stroke-width="4" opacity="0.3"/>
+  <line x1="0" y1="622" x2="1200" y2="622" stroke="#B5632A" stroke-width="4" opacity="0.3"/>
+
+  <!-- Large background icon (decorative, very faint, right side) -->
+  <circle cx="1020" cy="315" r="280" stroke="#352E28" stroke-width="2" fill="none" opacity="0.04"/>
+  <circle cx="1020" cy="315" r="170" stroke="#B5632A" stroke-width="1.5" fill="none" opacity="0.05"/>
+  <circle cx="1020" cy="315" r="65" fill="#B5632A" opacity="0.05"/>
+  <circle cx="1132" cy="131" r="40" fill="#B5632A" opacity="0.05"/>
+
+  <!-- Logo Icon — centered, above wordmark, scale 4 = 160×160px -->
+  <!-- icon center at (600, 220): translate(600 - 20*4, 220 - 20*4) = translate(520, 140) -->
+  <g transform="translate(520, 140) scale(4)">
+    <circle cx="20" cy="20" r="17" stroke="#352E28" stroke-width="1.8" fill="#FBF7F1"/>
+    <circle cx="20" cy="20" r="10" stroke="#B5632A" stroke-width="1.2" fill="none" opacity="0.45"/>
+    <circle cx="20" cy="20" r="4" fill="#B5632A"/>
+    <circle cx="32" cy="8" r="2.5" fill="#B5632A"/>
+  </g>
+
+  <!-- Wordmark — centered below icon -->
+  <text
+    x="600"
+    y="410"
+    text-anchor="middle"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="88"
+    font-weight="400"
+    fill="#352E28"
+    letter-spacing="-2.5"
+  >offyx</text>
+
+  <!-- Copper divider -->
+  <rect x="556" y="430" width="88" height="3" rx="1.5" fill="#B5632A"/>
+
+  <!-- Tagline -->
+  <text
+    x="600"
+    y="480"
+    text-anchor="middle"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="26"
+    font-weight="400"
+    fill="#7A6E67"
+  >Deine Geschäftsadresse in Berlin.</text>
 </svg>
