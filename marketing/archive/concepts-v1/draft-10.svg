@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 512" fill="none">
+  <!--
+    offyx — Draft 10: Pinselstrich
+    VERTIKALE KOMPOSITION — bricht alle anderen Layouts.
+    Kupfer-Kalligrafiestrich als Kopfzeichen,
+    Wordmark zentriert darunter.
+    Kein separates Icon-Feld. Kein Icon-links-Wordmark-rechts.
+    Human, organisch, warm.
+    CI: Ink #352E28 · Copper #B5632A · Cream #FBF7F1
+  -->
+
+  <!-- Gesamtkomposition: zentriert, vertikal gestapelt -->
+  <g id="composition" transform="translate(0, 0)">
+
+    <!-- ── PINSELSTRICH — Kupfer-Kalligrafie ── -->
+    <!-- Simulierter Pinselstrich: gefüllter Pfad mit variierender Breite -->
+    <!-- Dünne Spitze links → bauchige Mitte → ausgeblendetes Ende rechts -->
+    <path d="
+      M 188 162
+      C 240 148, 370 132, 512 138
+      C 620 142, 730 152, 836 160
+      C 836 185, 726 190, 618 184
+      C 492 177, 360 188, 230 195
+      C 212 196, 194 193, 188 190
+      Z"
+          fill="#B5632A" opacity="0.82"/>
+
+    <!-- Hauch: zweite, leicht versetzte Ebene für Tiefe -->
+    <path d="
+      M 190 156
+      C 250 143, 390 126, 528 133
+      C 630 138, 740 148, 836 156
+      C 836 162, 740 162, 628 157
+      C 510 152, 370 155, 242 162
+      C 218 163, 196 160, 190 156
+      Z"
+          fill="#B5632A" opacity="0.18"/>
+
+    <!-- Dünnerer Echo-Strich darüber -->
+    <path d="M 350 130 C 480 118, 640 122, 760 128"
+          stroke="#B5632A" stroke-width="1.2" fill="none"
+          stroke-linecap="round" opacity="0.25"/>
+
+    <!-- Spitze des Strichs — linke Seite -->
+    <path d="M 162 173 C 172 160, 184 158, 188 162 C 188 190 185 193 178 196 Z"
+          fill="#B5632A" opacity="0.6"/>
+
+    <!-- Auslauf rechts — Pinsel verliert Farbe -->
+    <path d="M 800 162 C 820 160, 836 158, 848 156 C 848 162 840 166 826 168 Z"
+          fill="#B5632A" opacity="0.35"/>
+
+    <!-- ── WORDMARK: zentriert, vertikal unter dem Strich ── -->
+    <text x="512" y="336"
+          font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
+          font-size="148" font-weight="400"
+          fill="#352E28"
+          letter-spacing="-4"
+          text-anchor="middle">offyx</text>
+
+    <!-- Feine Ink-Trennlinie unter Wordmark -->
+    <rect x="192" y="352" width="640" height="0.9" fill="#352E28" opacity="0.18"/>
+
+    <!-- Subtitle: zentriert -->
+    <text x="512" y="392"
+          font-family="'Work Sans', Helvetica, Arial, sans-serif"
+          font-size="20" font-weight="300"
+          fill="#9B8E82"
+          letter-spacing="6"
+          text-anchor="middle">Virtual Office · Berlin</text>
+
+    <!-- ── DETAILS: Eyebrow über dem Strich ── -->
+    <text x="512" y="128"
+          font-family="'Work Sans', Helvetica, Arial, sans-serif"
+          font-size="15" font-weight="500"
+          fill="#B5632A"
+          letter-spacing="8"
+          text-anchor="middle"
+          opacity="0.75">OFFYX</text>
+
+    <!-- Zwei Copper-Dots neben Eyebrow als Ornament -->
+    <circle cx="315" cy="122" r="3.5" fill="#B5632A" opacity="0.45"/>
+    <circle cx="709" cy="122" r="3.5" fill="#B5632A" opacity="0.45"/>
+  </g>
+</svg>

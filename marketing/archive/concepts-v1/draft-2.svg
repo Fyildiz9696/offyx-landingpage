@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 512" fill="none">
+  <!--
+    offyx — Draft 2: Buchseite / Letterpress Badge
+    Rechteckiges Buchplakat-Siegel — editoriale Typografie zentriert
+    CI: Ink #352E28 · Copper #B5632A · Cream #FBF7F1
+  -->
+
+  <!-- ── ICON: Buchplatten-Badge ── -->
+  <g id="icon" transform="translate(40, 56)">
+
+    <!-- Äußerer Rahmen — Ink, doppelt -->
+    <rect x="14" y="14" width="348" height="370" rx="3"
+          fill="#FBF7F1" stroke="#352E28" stroke-width="2.2"/>
+    <!-- Innerer Rahmen — Ink, dünner -->
+    <rect x="28" y="28" width="320" height="342" rx="1"
+          fill="none" stroke="#352E28" stroke-width="0.9" opacity="0.55"/>
+
+    <!-- Copper Querstreifen oben -->
+    <rect x="50" y="90" width="276" height="1.2" fill="#B5632A" opacity="0.7"/>
+    <!-- Copper Querstreifen unten -->
+    <rect x="50" y="316" width="276" height="1.2" fill="#B5632A" opacity="0.7"/>
+
+    <!-- Eyebrow Text oben -->
+    <text x="188" y="78"
+          font-family="'Work Sans', Helvetica, Arial, sans-serif"
+          font-size="14"
+          font-weight="500"
+          fill="#9B8E82"
+          letter-spacing="6"
+          text-anchor="middle">BERLIN</text>
+
+    <!-- Hauptname: "offyx" zentriert — groß -->
+    <text x="188" y="228"
+          font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
+          font-size="96"
+          font-weight="400"
+          fill="#352E28"
+          letter-spacing="-2"
+          text-anchor="middle">offyx</text>
+
+    <!-- Sub: Typo-Details -->
+    <text x="188" y="332"
+          font-family="'Work Sans', Helvetica, Arial, sans-serif"
+          font-size="15"
+          font-weight="400"
+          fill="#7A6A5E"
+          letter-spacing="5"
+          text-anchor="middle">Virtual Office</text>
+
+    <!-- Eckornamente — vier Copper-Punkte -->
+    <circle cx="50" cy="50" r="3.5" fill="#B5632A" opacity="0.5"/>
+    <circle cx="326" cy="50" r="3.5" fill="#B5632A" opacity="0.5"/>
+    <circle cx="50" cy="356" r="3.5" fill="#B5632A" opacity="0.5"/>
+    <circle cx="326" cy="356" r="3.5" fill="#B5632A" opacity="0.5"/>
+  </g>
+
+  <!-- ── WORDMARK ── -->
+  <g id="wordmark" transform="translate(452, 0)">
+    <!-- Oberes Eyebrow -->
+    <text x="0" y="168"
+          font-family="'Work Sans', Helvetica, Arial, sans-serif"
+          font-size="18"
+          font-weight="500"
+          fill="#B5632A"
+          letter-spacing="8"
+          text-anchor="start">VIRTUAL OFFICE</text>
+
+    <!-- Copper-Akzentlinie -->
+    <rect x="0" y="180" width="60" height="1.5" fill="#B5632A"/>
+
+    <!-- Hauptname groß -->
+    <text x="0" y="298"
+          font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
+          font-size="138"
+          font-weight="400"
+          fill="#352E28"
+          letter-spacing="-4"
+          text-anchor="start">offyx</text>
+
+    <!-- Ink-Linie unter Wordmark -->
+    <rect x="0" y="315" width="500" height="1.2" fill="#352E28" opacity="0.2"/>
+
+    <!-- Berlin Tagline -->
+    <text x="0" y="355"
+          font-family="'Work Sans', Helvetica, Arial, sans-serif"
+          font-size="20"
+          font-weight="300"
+          fill="#9B8E82"
+          letter-spacing="5"
+          text-anchor="start">Geschäftsadresse · Coworking · Berlin</text>
+  </g>
+</svg>

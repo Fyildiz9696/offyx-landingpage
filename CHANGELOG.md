@@ -6,6 +6,29 @@ Format basiert auf [Keep a Changelog](https://keepachangelog.com/de/1.0.0/).
 
 ---
 
+## [Unreleased]
+
+### Geändert
+
+- **Neues Logo (v2.0)** — reiner Wordmark `offyx.` : kursives „offyx" in
+  Ink `#352E28` mit Copper-Punkt `#B5632A`
+  - `Header.astro` / `Footer.astro`: Siegel-Icon + Text-Wordmark ersetzt durch
+    das freigegebene Logo (`/images/logo.png`)
+  - Favicon-Set neu: `favicon.ico` (16/32/48), `favicon.png` (32),
+    `apple-touch-icon.png` (180), `icon-192.png`, `icon-512.png`
+  - `favicon.svg` entfernt — das Logo liegt als PNG vor
+  - OG-Bild von SVG auf PNG umgestellt (`/images/og-default.png`);
+    SVG wird von Social-Plattformen nicht zuverlässig unterstützt
+- Marketing-Assets neu strukturiert:
+  - `logo/` — 17 produktive PNG-Dateien
+  - `tools/build-logo-assets.py` — reproduzierbare Pipeline, erzeugt alle
+    Assets aus der AI-Vorlage inkl. Website-Sync
+  - `archive/` — verworfene Vektor-Fassung, frühe Konzepte, altes Siegel
+- `pnpm-workspace.yaml`: `allowBuilds`-Platzhalter durch gültige Werte ersetzt
+  (esbuild, sharp) — Build war zuvor blockiert
+
+---
+
 ## [1.0.0] — 2024-01
 
 ### Hinzugefügt

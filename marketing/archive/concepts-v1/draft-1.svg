@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 512" fill="none">
+  <!--
+    offyx — Draft 1: Siegel Verfeinert
+    Refined Seal — Verfeinertes Siegel mit Kompassmarken
+    CI: Ink #352E28 · Copper #B5632A · Cream #FBF7F1 · Paper #F7F1E8
+  -->
+
+  <!-- ── ICON: Verfeinertes Siegel ── -->
+  <g id="icon" transform="translate(70, 56)">
+
+    <!-- Outer background circle -->
+    <circle cx="180" cy="200" r="166" fill="#F7F1E8"/>
+
+    <!-- Outer ring: thin Ink stroke -->
+    <circle cx="180" cy="200" r="155" stroke="#352E28" stroke-width="1.4" fill="none"/>
+
+    <!-- Compass ticks — sehr dezent, Ink faint -->
+    <!-- North -->
+    <line x1="180" y1="38" x2="180" y2="54" stroke="#352E28" stroke-width="1.2" opacity="0.28"/>
+    <!-- East -->
+    <line x1="336" y1="200" x2="352" y2="200" stroke="#352E28" stroke-width="1.2" opacity="0.28"/>
+    <!-- South -->
+    <line x1="180" y1="346" x2="180" y2="362" stroke="#352E28" stroke-width="1.2" opacity="0.28"/>
+    <!-- West -->
+    <line x1="8" y1="200" x2="24" y2="200" stroke="#352E28" stroke-width="1.2" opacity="0.28"/>
+
+    <!-- Diagonale Ticks — noch feiner -->
+    <line x1="290" y1="90" x2="298" y2="82" stroke="#352E28" stroke-width="0.8" opacity="0.16"/>
+    <line x1="290" y1="310" x2="298" y2="318" stroke="#352E28" stroke-width="0.8" opacity="0.16"/>
+    <line x1="70" y1="310" x2="62" y2="318" stroke="#352E28" stroke-width="0.8" opacity="0.16"/>
+    <line x1="70" y1="90" x2="62" y2="82" stroke="#352E28" stroke-width="0.8" opacity="0.16"/>
+
+    <!-- Second ring: subtle inner band -->
+    <circle cx="180" cy="200" r="130" stroke="#352E28" stroke-width="0.7" fill="none" opacity="0.18"/>
+
+    <!-- Copper ring — mittlerer Akzent -->
+    <circle cx="180" cy="200" r="86" stroke="#B5632A" stroke-width="1.6" fill="none" opacity="0.55"/>
+
+    <!-- Inner copper ring — neu, feinere Note -->
+    <circle cx="180" cy="200" r="52" stroke="#B5632A" stroke-width="0.9" fill="none" opacity="0.28"/>
+
+    <!-- Center dot: Copper -->
+    <circle cx="180" cy="200" r="9" fill="#B5632A"/>
+    <circle cx="180" cy="200" r="4.5" fill="#F7F1E8"/>
+
+    <!-- Accent dot: upper-right — Nordstern -->
+    <circle cx="254" cy="126" r="5" fill="#B5632A"/>
+    <!-- Accent dot connector — haarfeine Linie -->
+    <line x1="180" y1="200" x2="254" y2="126" stroke="#B5632A" stroke-width="0.6" opacity="0.35"/>
+  </g>
+
+  <!-- ── WORDMARK ── -->
+  <g id="wordmark" transform="translate(430, 0)">
+    <!-- Hauptname -->
+    <text x="0" y="292"
+          font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
+          font-size="128"
+          font-weight="400"
+          fill="#352E28"
+          letter-spacing="-3"
+          text-anchor="start">offyx</text>
+
+    <!-- Copper rule -->
+    <rect x="2" y="308" width="430" height="1.5" fill="#B5632A" opacity="0.65"/>
+
+    <!-- Subtitle -->
+    <text x="4" y="346"
+          font-family="'Work Sans', Helvetica, Arial, sans-serif"
+          font-size="22"
+          font-weight="300"
+          fill="#7A6A5E"
+          letter-spacing="4"
+          text-anchor="start">Virtual Office · Berlin</text>
+  </g>
+</svg>

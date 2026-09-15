@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>offyx — Finales Logo · Verifikation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  :root{--bg:#F7F1E8;--surface:#FBF7F1;--ink:#352E28;--muted:#9B8E82;--copper:#B5632A;--line:rgba(53,46,40,.14);--ok:#2E7D32}
+  body{font-family:'Work Sans',Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);padding:3rem 2.5rem;max-width:1240px;margin:0 auto}
+  header{margin-bottom:2.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--line)}
+  h1{font-family:'Playfair Display',Georgia,serif;font-size:1.9rem;font-weight:400;font-style:italic}
+  h1 em{font-style:normal;color:var(--copper)}
+  header small{display:block;margin-top:6px;font-size:.8rem;color:var(--muted)}
+  h2{font-family:'Work Sans';font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--copper);margin:2.5rem 0 1.2rem}
+
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+  .box{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface)}
+  .box .lbl{padding:.7rem 1rem;font-size:.72rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+  .box .lbl .tag{font-size:.62rem;font-weight:600;padding:2px 8px;border-radius:99px;background:rgba(53,46,40,.07);color:var(--muted);letter-spacing:.05em}
+  .box .lbl .tag.ai{background:rgba(181,99,42,.14);color:var(--copper)}
+  .box .lbl .tag.svg{background:rgba(46,125,50,.13);color:var(--ok)}
+  .box img{width:100%;display:block;background:#FBF7F1}
+  .box .note{padding:.75rem 1rem;font-size:.75rem;color:var(--muted);line-height:1.6;border-top:1px solid var(--line)}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem}
+  .card{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface)}
+  .card img{width:100%;display:block}
+  .card .cap{padding:.6rem .9rem;font-size:.72rem;color:var(--muted);border-top:1px solid var(--line);font-family:monospace}
+
+  .metrics{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1rem;margin-top:1.5rem}
+  .metric{padding:1rem 1.2rem;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+  .metric .k{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:4px}
+  .metric .v{font-size:1.15rem;font-family:'Playfair Display',serif}
+  .metric .v small{font-size:.75rem;color:var(--ok);font-family:'Work Sans'}
+
+  table{width:100%;border-collapse:collapse;margin-top:1rem;font-size:.8rem}
+  th,td{text-align:left;padding:.6rem .8rem;border-bottom:1px solid var(--line)}
+  th{font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+  td.mono{font-family:monospace;font-size:.75rem}
+  .yes{color:var(--ok);font-weight:600}
+
+  footer{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--line);font-size:.75rem;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>offyx <em>· Finales Logo</em> — Verifikation</h1>
+  <small>Freigegeben: nb2-02 (Copper-Punkt) · SVG-Version vektorisiert · fyAI Solutions 2026</small>
+</header>
+
+<h2>1 · Direktvergleich: AI-Vorlage vs. SVG</h2>
+<div class="compare">
+  <div class="box">
+    <div class="lbl">Freigegebene Vorlage <span class="tag ai">AI · PNG</span></div>
+    <img src="nb2-02-copper-dot.png" alt="AI Vorlage">
+    <div class="note">Nano Banana 2 · 2528×1696 · Raster. Ursprünglich freigegeben.</div>
+  </div>
+  <div class="box">
+    <div class="lbl">Vektorisierte Version <span class="tag svg">SVG · Vektor</span></div>
+    <img src="../svg/final/offyx-logo-wordmark-cream.svg" alt="SVG Version">
+    <div class="note">Playfair Display Italic 650 · Tracking 28 · echte Pfade, keine Font-Abhängigkeit.</div>
+  </div>
+</div>
+
+<div class="metrics">
+  <div class="metric"><div class="k">Seitenverhältnis AI</div><div class="v">2.549</div></div>
+  <div class="metric"><div class="k">Seitenverhältnis SVG</div><div class="v">2.547 <small>✓ match</small></div></div>
+  <div class="metric"><div class="k">Strichstärke/Höhe AI</div><div class="v">0.1399</div></div>
+  <div class="metric"><div class="k">Strichstärke/Höhe SVG</div><div class="v">0.1417 <small>≈ match</small></div></div>
+</div>
+
+<h2>2 · Varianten</h2>
+<div class="grid">
+  <div class="card"><img src="../svg/final/offyx-logo-wordmark-cream.svg" alt="cream"><div class="cap">offyx-logo-wordmark-cream.svg</div></div>
+  <div class="card"><img src="../svg/final/offyx-logo-wordmark-dark.svg" alt="dark"><div class="cap">offyx-logo-wordmark-dark.svg</div></div>
+  <div class="card" style="background:#352E28"><img src="../svg/final/offyx-logo-wordmark-dark-trans.svg" alt="dark trans"><div class="cap">…-dark-trans.svg (transparent)</div></div>
+  <div class="card"><img src="../svg/final/offyx-icon.svg" alt="icon" style="max-width:180px;margin:1rem auto"><div class="cap">offyx-icon.svg (quadratisch)</div></div>
+</div>
+
+<h2>3 · Favicon-Test (Lesbarkeit bei kleinen Größen)</h2>
+<div class="grid" style="grid-template-columns:repeat(4,1fr)">
+  <div class="card"><img src="../png/final/offyx-icon-32.png" alt="32"><div class="cap">32 px</div></div>
+  <div class="card"><img src="../png/final/offyx-icon-64.png" alt="64"><div class="cap">64 px</div></div>
+  <div class="card"><img src="../png/final/offyx-icon-128.png" alt="128"><div class="cap">128 px</div></div>
+  <div class="card"><img src="../png/final/offyx-icon-256.png" alt="256"><div class="cap">256 px</div></div>
+</div>
+
+<h2>4 · Dateien</h2>
+<table>
+  <tr><th>Datei</th><th>Format</th><th>Verwendung</th></tr>
+  <tr><td class="mono">svg/final/offyx-logo-wordmark.svg</td><td>SVG</td><td>Primärlogo, transparent</td></tr>
+  <tr><td class="mono">svg/final/offyx-logo-wordmark-cream.svg</td><td>SVG</td><td>auf Cream (Dokumente, Präsentation)</td></tr>
+  <tr><td class="mono">svg/final/offyx-logo-wordmark-dark.svg</td><td>SVG</td><td>auf dunklem Grund</td></tr>
+  <tr><td class="mono">svg/final/offyx-icon(-dark)?.svg</td><td>SVG</td><td>Favicon, App-Icon, Social-Avatar</td></tr>
+  <tr><td class="mono">png/final/*.png</td><td>PNG</td><td>Raster-Exporte 32–3200 px</td></tr>
+  <tr><td class="mono">webp/offyx-logo-wordmark*.webp</td><td>WebP</td><td>Web-Optimierung</td></tr>
+</table>
+
+<footer>
+  CI: Ink #352E28 · Copper #B5632A · Cream #FBF7F1 · Playfair Display Italic (OFL) · fyAI Solutions 2026
+</footer>
+
+</body>
+</html>

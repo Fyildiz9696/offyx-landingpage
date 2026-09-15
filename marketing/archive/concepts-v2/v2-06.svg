@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 512" fill="none">
+  <!--
+    offyx — Draft v2-06: Der Marker
+    Copper-Textmarker hinter dem Wort — wie auf Papier markiert.
+    Editorial, menschlich, selbstbewusst.
+  -->
+
+  <!-- Cream-Hintergrund -->
+  <rect width="1024" height="512" fill="#FBF7F1"/>
+
+  <!-- Textmarker-Strich: leicht rotiert, deckt untere zwei Drittel der Buchstaben -->
+  <g transform="rotate(-1.5, 512, 275)">
+    <rect x="332" y="242" width="362" height="64" rx="8"
+          fill="#B5632A" opacity="0.42"/>
+    <!-- Zweiter, hellerer Marker-Hauch für Authentizität -->
+    <rect x="340" y="250" width="346" height="50" rx="6"
+          fill="#B5632A" opacity="0.18"/>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="512" y="296"
+        font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
+        font-style="italic"
+        font-size="150"
+        font-weight="400"
+        fill="#352E28"
+        letter-spacing="-2"
+        text-anchor="middle">offyx</text>
+</svg>

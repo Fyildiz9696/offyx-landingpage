@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" fill="none">
+  <!-- offyx — Logo Icon Dark (on dark/copper background) -->
+  <!-- Invertiertes Icon für dunkle Hintergründe -->
+  <circle cx="20" cy="20" r="17" stroke="#FBF7F1" stroke-width="1.8" fill="#352E28"/>
+  <circle cx="20" cy="20" r="10" stroke="#B5632A" stroke-width="1.2" fill="none" opacity="0.6"/>
+  <circle cx="20" cy="20" r="4" fill="#B5632A"/>
+  <circle cx="32" cy="8" r="2.5" fill="#B5632A"/>
+</svg>

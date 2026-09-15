@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 512" fill="none">
+  <!--
+    offyx — Draft v2-05: Editorial
+    Kursive Wordmark + Work-Sans Subline mit feinen Copper-Regeln.
+    Die "Briefkopf"-Version — für Website, Visitenkarte, Dokumente.
+  -->
+
+  <!-- Cream-Hintergrund -->
+  <rect width="1024" height="512" fill="#FBF7F1"/>
+
+  <!-- Wordmark: kursiv, groß, zentriert -->
+  <text x="512" y="268"
+        font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
+        font-style="italic"
+        font-size="140"
+        font-weight="400"
+        fill="#352E28"
+        letter-spacing="-2"
+        text-anchor="middle">offyx</text>
+
+  <!-- Regel links -->
+  <rect x="222" y="308" width="120" height="1.2" fill="#B5632A" opacity="0.6"/>
+  <!-- Regel rechts -->
+  <rect x="682" y="308" width="120" height="1.2" fill="#B5632A" opacity="0.6"/>
+
+  <!-- Subline: Work Sans, caps, letterspaced -->
+  <text x="512" y="318"
+        font-family="'Work Sans', Helvetica, Arial, sans-serif"
+        font-size="19"
+        font-weight="400"
+        fill="#7A6A5E"
+        letter-spacing="6"
+        text-anchor="middle">VIRTUAL OFFICE · BERLIN</text>
+</svg>

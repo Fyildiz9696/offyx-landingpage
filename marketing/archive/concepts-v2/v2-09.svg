@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 512" fill="none">
+  <!--
+    offyx — Draft v2-09: Das Korrekturzeichen
+    Setzer-Caret mit handschriftlich eingefügtem "berlin"
+    über dem Wort — wie eine Korrektur im Manuskript.
+    Verweist auf den Ort, ohne Subline.
+  -->
+
+  <!-- Cream-Hintergrund -->
+  <rect width="1024" height="512" fill="#FBF7F1"/>
+
+  <!-- Eingefügtes Wort: "berlin" — klein, kursiv, Copper -->
+  <text x="516" y="182"
+        font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
+        font-style="italic"
+        font-size="44"
+        font-weight="400"
+        fill="#B5632A"
+        letter-spacing="1"
+        text-anchor="middle">berlin</text>
+
+  <!-- Caret (Einfügezeichen): zeigt von unten auf die Einfügestelle -->
+  <path d="M 501 224 L 514 206 L 527 224"
+        stroke="#B5632A"
+        stroke-width="3.5"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"/>
+
+  <!-- Wordmark -->
+  <text x="512" y="316"
+        font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
+        font-style="italic"
+        font-size="150"
+        font-weight="400"
+        fill="#352E28"
+        letter-spacing="-2"
+        text-anchor="middle">offyx</text>
+</svg>

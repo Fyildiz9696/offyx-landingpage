@@ -16,15 +16,15 @@ const navLinks = site.nav;
 <header class="header" id="site-header">
   <div class="header__inner container">
     <a class="header__logo" href="/" aria-label={`${site.company} — Startseite`}>
-      <!-- Icon: Geometrisches Siegel-Mark (keine Fonts) -->
-      <svg class="header__logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <circle cx="20" cy="20" r="17" stroke="#352E28" stroke-width="1.8" fill="#FBF7F1"/>
-        <circle cx="20" cy="20" r="10" stroke="#B5632A" stroke-width="1.2" fill="none" opacity="0.45"/>
-        <circle cx="20" cy="20" r="4" fill="#B5632A"/>
-        <circle cx="32" cy="8" r="2.5" fill="#B5632A"/>
-      </svg>
-      <!-- Wordmark: HTML-Text → nutzt geladene Playfair Display -->
-      <span class="header__logo-wordmark">offyx</span>
+      <!-- Logo: kursives "offyx." mit Copper-Punkt (freigegebenes PNG) -->
+      <img
+        class="header__logo-img"
+        src="/images/logo.png"
+        alt="offyx"
+        width="96"
+        height="40"
+        decoding="async"
+      />
     </a>
 
     <nav class="header__nav" id="main-nav" aria-label="Hauptnavigation">
@@ -99,29 +99,13 @@ const navLinks = site.nav;
     gap: 10px;
   }
 
-  .header__logo-icon {
-    width: 34px;
-    height: 34px;
-    flex-shrink: 0;
-    transition: opacity 0.2s ease;
-  }
-  .header__logo:hover .header__logo-icon { opacity: 0.8; }
-
-  .header__logo-wordmark {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-weight: 400;
-    font-size: 1.4rem;
-    color: #352E28;
-    letter-spacing: -0.03em;
-    line-height: 1;
-    user-select: none;
-  }
-
   .header__logo-img {
     height: 36px;
     width: auto;
     display: block;
+    transition: opacity 0.2s ease;
   }
+  .header__logo:hover .header__logo-img { opacity: 0.75; }
 
   /* Mobile nav — hidden by default with fade+slide animation */
   .header__nav {

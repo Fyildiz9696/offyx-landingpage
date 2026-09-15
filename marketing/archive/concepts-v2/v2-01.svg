@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 512" fill="none">
+  <!--
+    offyx — Draft v2-01: Die Referenz
+    Pure kursive Wordmark, exakt im Geist der Referenz.
+    Playfair Display Italic, Ink auf Cream. Nichts weiter.
+  -->
+
+  <!-- Cream-Hintergrund -->
+  <rect width="1024" height="512" fill="#FBF7F1"/>
+
+  <!-- Wordmark — das ist alles -->
+  <text x="512" y="296"
+        font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
+        font-style="italic"
+        font-size="150"
+        font-weight="400"
+        fill="#352E28"
+        letter-spacing="-2"
+        text-anchor="middle">offyx</text>
+</svg>

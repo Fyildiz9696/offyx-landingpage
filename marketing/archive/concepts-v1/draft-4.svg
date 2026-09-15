@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 512" fill="none">
+  <!--
+    offyx — Draft 4: Raute / Diamond Siegel
+    Rotiertes Quadrat als Siegel — kontrolliert & markant
+    CI: Ink #352E28 · Copper #B5632A · Cream #FBF7F1
+  -->
+
+  <!-- ── ICON: Raute Siegel ── -->
+  <g id="icon" transform="translate(50, 30)">
+
+    <!-- Äußere Raute -->
+    <path d="M 188 18 L 356 188 L 188 358 L 20 188 Z"
+          fill="#FBF7F1" stroke="#352E28" stroke-width="2"/>
+
+    <!-- Innere Raute — dünner -->
+    <path d="M 188 48 L 326 188 L 188 328 L 50 188 Z"
+          fill="none" stroke="#352E28" stroke-width="0.8" opacity="0.3"/>
+
+    <!-- Copper Raute — Mittelring -->
+    <path d="M 188 100 L 276 188 L 188 276 L 100 188 Z"
+          fill="none" stroke="#B5632A" stroke-width="1.5" opacity="0.5"/>
+
+    <!-- Sehr kleiner Copper Kern -->
+    <path d="M 188 158 L 218 188 L 188 218 L 158 188 Z"
+          fill="#B5632A" opacity="0.12"/>
+
+    <!-- Mittelkreis -->
+    <circle cx="188" cy="188" r="10" fill="#B5632A"/>
+    <circle cx="188" cy="188" r="5" fill="#FBF7F1"/>
+
+    <!-- Eckmarken an den vier Spitzen -->
+    <!-- North -->
+    <circle cx="188" cy="18" r="4" fill="#B5632A"/>
+    <!-- East -->
+    <circle cx="356" cy="188" r="4" fill="#B5632A"/>
+    <!-- South -->
+    <circle cx="188" cy="358" r="4" fill="#B5632A"/>
+    <!-- West -->
+    <circle cx="20" cy="188" r="4" fill="#B5632A"/>
+
+    <!-- Kreuzachsen — hauchdünn -->
+    <line x1="188" y1="18" x2="188" y2="358"
+          stroke="#352E28" stroke-width="0.6" opacity="0.14"/>
+    <line x1="20" y1="188" x2="356" y2="188"
+          stroke="#352E28" stroke-width="0.6" opacity="0.14"/>
+
+    <!-- Subtile Diagonale für Tiefe -->
+    <line x1="112" y1="112" x2="264" y2="264"
+          stroke="#352E28" stroke-width="0.5" opacity="0.08"/>
+    <line x1="264" y1="112" x2="112" y2="264"
+          stroke="#352E28" stroke-width="0.5" opacity="0.08"/>
+
+    <!-- Basis-Label -->
+    <text x="188" y="404"
+          font-family="'Work Sans', Helvetica, Arial, sans-serif"
+          font-size="16"
+          font-weight="500"
+          fill="#9B8E82"
+          letter-spacing="7"
+          text-anchor="middle">BERLIN</text>
+  </g>
+
+  <!-- ── WORDMARK ── -->
+  <g id="wordmark" transform="translate(464, 50)">
+    <!-- Copper Eyebrow -->
+    <rect x="0" y="152" width="42" height="2" fill="#B5632A"/>
+    <text x="52" y="166"
+          font-family="'Work Sans', Helvetica, Arial, sans-serif"
+          font-size="16"
+          font-weight="500"
+          fill="#B5632A"
+          letter-spacing="6"
+          text-anchor="start">VIRTUAL OFFICE</text>
+
+    <!-- Hauptname -->
+    <text x="0" y="292"
+          font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
+          font-size="140"
+          font-weight="400"
+          fill="#352E28"
+          letter-spacing="-3"
+          text-anchor="start">offyx</text>
+
+    <!-- Doppelregel unten: Ink + Copper -->
+    <rect x="0" y="308" width="510" height="1.5" fill="#352E28" opacity="0.25"/>
+    <rect x="0" y="313" width="180" height="1" fill="#B5632A" opacity="0.6"/>
+
+    <!-- Subtitle -->
+    <text x="0" y="352"
+          font-family="'Work Sans', Helvetica, Arial, sans-serif"
+          font-size="21"
+          font-weight="300"
+          fill="#7A6A5E"
+          letter-spacing="4"
+          text-anchor="start">Geschäftsadresse · Coworking</text>
+  </g>
+</svg>

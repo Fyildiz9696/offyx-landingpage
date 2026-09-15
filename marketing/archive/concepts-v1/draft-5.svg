@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 512" fill="none">
+  <!--
+    offyx — Draft 5: Reine Typografie / Pure Wordmark
+    Kein Icon-Symbol — die Typografie ist der Charakter
+    Playfair Display mit präzisen Kupferakzenten
+    CI: Ink #352E28 · Copper #B5632A · Cream #FBF7F1
+  -->
+
+  <!-- Hintergrund: Paper (für Preview-Kontext) -->
+  <!-- Kein Hintergrundrechteck — SVG ist transparent -->
+
+  <!-- ── TYPOGRAFISCHE MARKE ── -->
+  <g id="wordmark">
+
+    <!-- Obere horizontale Kompositionslinie — sehr fein -->
+    <rect x="60" y="128" width="904" height="0.8" fill="#352E28" opacity="0.14"/>
+
+    <!-- Copper-Akzentstreifen links — vertikale Note -->
+    <rect x="60" y="128" width="3" height="256" fill="#B5632A"/>
+
+    <!-- Wordmark: "offyx" — Playfair 400, maximum size -->
+    <text x="86" y="322"
+          font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
+          font-size="192"
+          font-weight="400"
+          fill="#352E28"
+          letter-spacing="-6"
+          text-anchor="start">offyx</text>
+
+    <!-- Copper accent — kurze Unterstreichung der ff-Ligatur -->
+    <!-- Die ff-Ligatur endet ca. bei x=316 für size 192 -->
+    <rect x="86" y="336" width="232" height="2.5" fill="#B5632A"/>
+
+    <!-- Faint extension to full width -->
+    <rect x="318" y="336" width="646" height="1" fill="#352E28" opacity="0.12"/>
+
+    <!-- Untere Baseline-Regel -->
+    <rect x="60" y="384" width="904" height="0.8" fill="#352E28" opacity="0.14"/>
+
+    <!-- Subtitle rechts ausgerichtet — "Virtual Office · Berlin" -->
+    <text x="964" y="370"
+          font-family="'Work Sans', Helvetica, Arial, sans-serif"
+          font-size="22"
+          font-weight="300"
+          fill="#9B8E82"
+          letter-spacing="4"
+          text-anchor="end">Virtual Office · Berlin</text>
+
+    <!-- Kleines Copper-Detail oben rechts — Nordstern-Referenz -->
+    <circle cx="942" cy="148" r="4" fill="#B5632A"/>
+    <circle cx="954" cy="136" r="2.5" fill="#B5632A" opacity="0.5"/>
+
+    <!-- Eyebrow oben links -->
+    <text x="86" y="110"
+          font-family="'Work Sans', Helvetica, Arial, sans-serif"
+          font-size="17"
+          font-weight="500"
+          fill="#B5632A"
+          letter-spacing="8"
+          text-anchor="start">OFFYX</text>
+
+  </g>
+</svg>

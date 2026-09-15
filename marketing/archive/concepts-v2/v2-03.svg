@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 512" fill="none">
+  <!--
+    offyx — Draft v2-03: Die Unterschrift
+    Kursive Wordmark mit handgeschriebenem Copper-Strich darunter.
+    Wie eine Signatur unter einem Brief — persönlich, verbindlich.
+  -->
+
+  <!-- Cream-Hintergrund -->
+  <rect width="1024" height="512" fill="#FBF7F1"/>
+
+  <!-- Wordmark -->
+  <text x="512" y="278"
+        font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
+        font-style="italic"
+        font-size="150"
+        font-weight="400"
+        fill="#352E28"
+        letter-spacing="-2"
+        text-anchor="middle">offyx</text>
+
+  <!-- Handgeschriebener Copper-Strich — leicht geschwungen, organisch -->
+  <path d="M 352 322
+           C 420 330, 500 318, 570 324
+           C 630 329, 680 320, 712 326"
+        stroke="#B5632A"
+        stroke-width="4"
+        fill="none"
+        stroke-linecap="round"/>
+
+  <!-- Feiner Echo-Strich: Hauch darunter -->
+  <path d="M 400 340
+           C 460 345, 540 338, 620 342"
+        stroke="#B5632A"
+        stroke-width="1.8"
+        fill="none"
+        stroke-linecap="round"
+        opacity="0.35"/>
+</svg>

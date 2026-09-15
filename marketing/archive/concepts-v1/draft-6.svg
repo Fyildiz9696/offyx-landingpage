@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 512" fill="none">
+  <!--
+    offyx — Draft 6: Tintentropfen
+    Organischer Tintentropfen als Icon — Papier & Tinte-Metapher wörtlich genommen
+    Erstmals kein geometrisch-symmetrisches Symbol
+    CI: Ink #352E28 · Copper #B5632A · Cream #FBF7F1
+  -->
+
+  <!-- ── ICON: Tintentropfen ── -->
+  <g id="icon" transform="translate(52, 16)">
+
+    <!-- Subtiler Hintergrundkreis (wie der Aufprall des Tropfens) -->
+    <ellipse cx="183" cy="342" rx="120" ry="18"
+             fill="#352E28" opacity="0.06"/>
+
+    <!-- Tropfen: Hauptform — Ink, Spitze oben, runder Bauch unten -->
+    <path d="M 183 52
+             C 205 105, 321 192, 321 300
+             A 138 138 0 0 1 45 300
+             C 45 192, 161 105, 183 52 Z"
+          fill="#352E28"/>
+
+    <!-- Glanzreflexion — Copper highlight, linke obere Seite -->
+    <path d="M 183 52
+             C 196 92, 252 155, 272 240"
+          stroke="#B5632A" stroke-width="3" fill="none"
+          stroke-linecap="round" opacity="0.55"/>
+
+    <!-- Zweite, dünnere Reflexlinie -->
+    <path d="M 175 80 C 184 118, 220 175, 228 245"
+          stroke="#FBF7F1" stroke-width="1.2" fill="none"
+          stroke-linecap="round" opacity="0.18"/>
+
+    <!-- Innerer Lichtkern — Cream -->
+    <ellipse cx="217" cy="210" rx="28" ry="46"
+             fill="#FBF7F1" opacity="0.06" transform="rotate(-20, 217, 210)"/>
+
+    <!-- Innenpunkt: Kupfer -->
+    <circle cx="183" cy="300" r="11" fill="#B5632A"/>
+    <circle cx="183" cy="300" r="5.5" fill="#352E28"/>
+
+    <!-- Ringe unter dem Tropfen — Aufprall-Halo -->
+    <ellipse cx="183" cy="342" rx="80" ry="10"
+             stroke="#352E28" stroke-width="0.8" fill="none" opacity="0.2"/>
+    <ellipse cx="183" cy="346" rx="110" ry="13"
+             stroke="#352E28" stroke-width="0.5" fill="none" opacity="0.1"/>
+  </g>
+
+  <!-- ── WORDMARK ── -->
+  <g id="wordmark" transform="translate(440, 60)">
+
+    <!-- Eyebrow mit Copper-Strich -->
+    <rect x="0" y="156" width="44" height="1.5" fill="#B5632A"/>
+    <text x="54" y="170"
+          font-family="'Work Sans', Helvetica, Arial, sans-serif"
+          font-size="16" font-weight="500"
+          fill="#B5632A"
+          letter-spacing="7">PAPIER &amp; TINTE</text>
+
+    <!-- Hauptname -->
+    <text x="0" y="298"
+          font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
+          font-size="140" font-weight="400"
+          fill="#352E28"
+          letter-spacing="-4">offyx</text>
+
+    <!-- Organische, leicht geschwungene Unterlinie -->
+    <path d="M 2 316 C 80 312, 200 318, 332 313 C 400 311, 460 314, 510 312"
+          stroke="#B5632A" stroke-width="1.6" fill="none" stroke-linecap="round"
+          opacity="0.7"/>
+
+    <!-- Subtitle -->
+    <text x="2" y="358"
+          font-family="'Work Sans', Helvetica, Arial, sans-serif"
+          font-size="21" font-weight="300"
+          fill="#9B8E82"
+          letter-spacing="4">Virtual Office · Berlin</text>
+  </g>
+</svg>

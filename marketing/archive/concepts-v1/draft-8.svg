@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 512" fill="none">
+  <!--
+    offyx — Draft 8: Stadtplan
+    Berlin-Raster als Icon — die physische Adresse als abstraktes Zeichen.
+    Unregelmäßiges Blockraster wie ein Berliner Stadtplan-Ausschnitt.
+    CI: Ink #352E28 · Copper #B5632A · Cream #FBF7F1
+  -->
+
+  <!-- ── ICON: Berliner Stadtplan-Raster ── -->
+  <g id="icon" transform="translate(54, 60)">
+
+    <!-- Raster-Hintergrund (sehr dezent) -->
+    <rect x="0" y="0" width="300" height="390" rx="2"
+          fill="#F7F1E8" stroke="#352E28" stroke-width="0.6" opacity="0.3"/>
+
+    <!-- ────────────────────────────────────
+         4 Spalten × 5 Zeilen = 20 Parzellen
+         Variierende Breiten wie echte Berliner Blöcke
+    ─────────────────────────────────────── -->
+
+    <!-- Zeile 1 (y: 0 – 68) -->
+    <rect x="0"   y="0"   width="68"  height="68" fill="#FBF7F1" stroke="#352E28" stroke-width="0.9"/>
+    <rect x="76"  y="0"   width="96"  height="68" fill="#FBF7F1" stroke="#352E28" stroke-width="0.9"/>
+    <rect x="180" y="0"   width="56"  height="68" fill="#B5632A" opacity="0.82"/> <!-- COPPER BLOCK -->
+    <rect x="244" y="0"   width="56"  height="68" fill="#FBF7F1" stroke="#352E28" stroke-width="0.9"/>
+
+    <!-- Zeile 2 (y: 76 – 144) -->
+    <rect x="0"   y="76"  width="96"  height="60" fill="#FBF7F1" stroke="#352E28" stroke-width="0.9"/>
+    <rect x="104" y="76"  width="60"  height="60" fill="#EFE6DA" stroke="#352E28" stroke-width="0.9"/>
+    <rect x="172" y="76"  width="80"  height="60" fill="#FBF7F1" stroke="#352E28" stroke-width="0.9"/>
+    <rect x="260" y="76"  width="40"  height="60" fill="#FBF7F1" stroke="#352E28" stroke-width="0.9"/>
+
+    <!-- Zeile 3 (y: 144 – 220) — breitere Blöcke wie Gewerbegebiet -->
+    <rect x="0"   y="144" width="48"  height="76" fill="#EFE6DA" stroke="#352E28" stroke-width="0.9"/>
+    <rect x="56"  y="144" width="116" height="76" fill="#FBF7F1" stroke="#352E28" stroke-width="0.9"/>
+    <rect x="180" y="144" width="60"  height="76" fill="#FBF7F1" stroke="#352E28" stroke-width="0.9"/>
+    <rect x="248" y="144" width="52"  height="76" fill="#EFE6DA" stroke="#352E28" stroke-width="0.9"/>
+
+    <!-- Zeile 4 (y: 228 – 296) -->
+    <rect x="0"   y="228" width="72"  height="60" fill="#FBF7F1" stroke="#352E28" stroke-width="0.9"/>
+    <rect x="80"  y="228" width="60"  height="60" fill="#FBF7F1" stroke="#352E28" stroke-width="0.9"/>
+    <rect x="148" y="228" width="48"  height="60" fill="#EFE6DA" stroke="#352E28" stroke-width="0.9"/>
+    <rect x="204" y="228" width="96"  height="60" fill="#FBF7F1" stroke="#352E28" stroke-width="0.9"/>
+
+    <!-- Zeile 5 (y: 304 – 390) — untere Zeile wieder variabel -->
+    <rect x="0"   y="304" width="56"  height="78" fill="#FBF7F1" stroke="#352E28" stroke-width="0.9"/>
+    <rect x="64"  y="304" width="80"  height="78" fill="#FBF7F1" stroke="#352E28" stroke-width="0.9"/>
+    <rect x="152" y="304" width="72"  height="78" fill="#B5632A" opacity="0.35"/> <!-- zweiter copper, heller -->
+    <rect x="232" y="304" width="68"  height="78" fill="#FBF7F1" stroke="#352E28" stroke-width="0.9"/>
+
+    <!-- Marker: Laubacher Str. — kleiner Copper-Kreis auf dem Haupt-Kupferblock -->
+    <circle cx="208" cy="34" r="6" fill="#FBF7F1"/>
+    <circle cx="208" cy="34" r="3" fill="#352E28"/>
+
+    <!-- Straßennamen (kaum lesbar, textural) -->
+    <text x="150" y="390"
+          font-family="'Work Sans', Helvetica, Arial, sans-serif"
+          font-size="11" font-weight="400"
+          fill="#9B8E82"
+          letter-spacing="3"
+          text-anchor="middle"
+          transform="translate(0, 0)">LAUBACHER STR.</text>
+  </g>
+
+  <!-- ── WORDMARK ── -->
+  <g id="wordmark" transform="translate(418, 50)">
+
+    <!-- Vertical copper rule left -->
+    <rect x="0" y="148" width="2.5" height="240" fill="#B5632A" opacity="0.6"/>
+
+    <!-- Hauptname -->
+    <text x="20" y="302"
+          font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
+          font-size="140" font-weight="400"
+          fill="#352E28"
+          letter-spacing="-4">offyx</text>
+
+    <!-- Feine Grundlinie -->
+    <rect x="20" y="318" width="508" height="1.2" fill="#352E28" opacity="0.18"/>
+
+    <!-- Subtitle -->
+    <text x="22" y="358"
+          font-family="'Work Sans', Helvetica, Arial, sans-serif"
+          font-size="21" font-weight="300"
+          fill="#9B8E82"
+          letter-spacing="4">Geschäftsadresse · Berlin</text>
+
+    <!-- Eyebrow oben -->
+    <text x="22" y="180"
+          font-family="'Work Sans', Helvetica, Arial, sans-serif"
+          font-size="16" font-weight="500"
+          fill="#B5632A"
+          letter-spacing="7">VIRTUAL OFFICE</text>
+  </g>
+</svg>

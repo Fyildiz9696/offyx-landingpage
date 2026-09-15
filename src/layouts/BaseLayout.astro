@@ -28,11 +28,11 @@ const {
 const fullTitle = `${title} | ${site.company}`;
 /**
  * Social Sharing / OG-Image:
- * - Standardbild: public/images/og-default.svg (1200×630px)
+ * - Standardbild: public/images/og-default.png (1200×630px)
  * - Ersetzen Sie diese Datei mit einem Kundenbild für Social Sharing
  * - Oder setzen Sie ogImage prop pro Seite
  */
-const defaultOgImage = "/images/og-default.svg";
+const defaultOgImage = "/images/og-default.png";
 const ogImageUrl = ogImage
   ? ogImage.startsWith("http")
     ? ogImage
@@ -156,8 +156,9 @@ const cssVars = `
     {site.verification?.bing && <meta name="msvalidate.01" content={site.verification.bing} />}
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
     <!-- Google Fonts: Playfair Display + Work Sans (paper-ink theme) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

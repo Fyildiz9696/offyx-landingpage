@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>offyx — AI Logo Drafts (Nano Banana 2)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #F7F1E8; --surface: #FBF7F1; --ink: #352E28;
+    --muted: #9B8E82; --copper: #B5632A; --line: rgba(53,46,40,0.14);
+  }
+  body {
+    font-family: 'Work Sans', Helvetica, Arial, sans-serif;
+    background: var(--bg); color: var(--ink);
+    padding: 3rem 2.5rem; max-width: 1200px; margin: 0 auto;
+  }
+  .page-header { margin-bottom: 3rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--line); }
+  .page-header h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.8rem; font-weight: 400; font-style: italic;
+  }
+  .page-header h1 em { font-style: normal; color: var(--copper); }
+  .page-header small { display:block; margin-top:6px; font-size:.8rem; color:var(--muted); letter-spacing:.04em; }
+
+  .note {
+    margin-bottom: 3rem; padding: 1.5rem;
+    border-left: 3px solid var(--copper);
+    background: var(--surface);
+    font-size: .85rem; line-height: 1.7; color: var(--muted);
+  }
+  .note strong { color: var(--ink); font-weight: 600; }
+
+  .section-label {
+    font-size: .68rem; font-weight: 600; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--copper);
+    margin-bottom: 1.5rem;
+  }
+
+  .draft {
+    margin-bottom: 3rem;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--surface);
+  }
+  .draft-preview {
+    display: flex; align-items: center; justify-content: center;
+    background: #FBF7F1;
+  }
+  .draft-preview img { width: 100%; display: block; }
+  .draft-meta { padding: 1.2rem 1.6rem 1.4rem; border-top: 1px solid var(--line); }
+  .draft-meta .num {
+    font-size: .68rem; font-weight: 600; letter-spacing: .08em;
+    color: var(--copper); margin-bottom: 4px; text-transform: uppercase;
+  }
+  .draft-meta h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.1rem; font-weight: 400; margin-bottom: 6px;
+  }
+  .draft-meta h2 em { font-style: italic; color: var(--copper); }
+  .draft-meta p { font-size: .82rem; font-weight: 300; color: var(--muted); line-height: 1.65; max-width: 640px; }
+  .draft-meta .file { font-size: .72rem; color: var(--muted); opacity: .7; margin-top: 6px; font-family: monospace; }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>offyx <em>· AI Drafts — Nano Banana 2</em></h1>
+  <small>4 KI-generierte Varianten · fal.ai nano-banana-2/edit · Referenzbild als Input · CI-Farben</small>
+</div>
+
+<div class="note">
+  <strong>Workflow:</strong> Das Referenzbild (kursives „offyx" in Petrol) wurde als Input an
+  <em>Nano Banana 2</em> gegeben — mit der Anweisung, es in die offyx-CI zu übersetzen:
+  Ink <strong>#352E28</strong> · Copper <strong>#B5632A</strong> · Cream <strong>#FBF7F1</strong>.
+  Alle PNGs in 2K-Auflösung (2528×1696).
+</div>
+
+<div class="section-label">Die 4 KI-Entwürfe</div>
+
+<div class="draft">
+  <div class="draft-preview"><img src="nb2-01-recolor.png" alt="AI Draft 1 — Recolor"></div>
+  <div class="draft-meta">
+    <div class="num">AI · 01</div>
+    <h2>Der <em>Recolor</em></h2>
+    <p>Die Referenz 1:1 in die CI übersetzt — warmes Ink-Braun statt Petrol auf Cream. Beweist: Die Farbwelt allein verändert die Wirkung komplett. Von kühl-maritim zu warm-editorial.</p>
+    <div class="file">nb2-01-recolor.png · 2528×1696</div>
+  </div>
+</div>
+
+<div class="draft">
+  <div class="draft-preview"><img src="nb2-02-copper-dot.png" alt="AI Draft 2 — Copper Dot"></div>
+  <div class="draft-meta">
+    <div class="num">AI · 02</div>
+    <h2>Der Copper-<em>Punkt</em></h2>
+    <p>Ein einziger Copper-Punkt nach dem x — „offyx." wie ein beendeter Satz. Minimaler Akzent, maximale Wiedererkennung. Der Punkt kann eigenständig als Favicon/App-Icon leben.</p>
+    <div class="file">nb2-02-copper-dot.png · 2528×1696</div>
+  </div>
+</div>
+
+<div class="draft">
+  <div class="draft-preview"><img src="nb2-03-signature.png" alt="AI Draft 3 — Signature"></div>
+  <div class="draft-meta">
+    <div class="num">AI · 03</div>
+    <h2>Die <em>Signatur</em></h2>
+    <p>Handgezeichneter Copper-Schwung unter dem Wort — organisch, geschwungen, mit Schwung unter dem f. Wie eine Unterschrift unter einem Brief: persönlich, verbindlich, menschlich.</p>
+    <div class="file">nb2-03-signature.png · 2528×1696</div>
+  </div>
+</div>
+
+<div class="draft">
+  <div class="draft-preview"><img src="nb2-04-descender.png" alt="AI Draft 4 — Descender Flourish"></div>
+  <div class="draft-meta">
+    <div class="num">AI · 04</div>
+    <h2>Der Descender-<em>Flourish</em></h2>
+    <p>Die y-Unterlänge wächst zur kalligrafischen Copper-Linie, die das ganze Wort unterstreicht und in einer Schleife ausläuft. Das aufwendigste, aber auch charaktervollste Stück — der Buchstabe wird selbst zur Dekoration.</p>
+    <div class="file">nb2-04-descender.png · 2528×1696</div>
+  </div>
+</div>
+
+</body>
+</html>

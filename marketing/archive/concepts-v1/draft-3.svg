@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 512" fill="none">
+  <!--
+    offyx — Draft 3: Kupferbogen / Copper Arc
+    Minimalistischer Kupferhalbkreis als Icon — maximale editorial Eleganz
+    CI: Ink #352E28 · Copper #B5632A · Cream #FBF7F1
+  -->
+
+  <!-- ── ICON: Kupferbogen ── -->
+  <g id="icon" transform="translate(60, 80)">
+
+    <!-- Faint background circle -->
+    <circle cx="170" cy="176" r="148" fill="#F7F1E8"/>
+
+    <!-- Outer Ink circle — hauchdünn -->
+    <circle cx="170" cy="176" r="140" stroke="#352E28" stroke-width="1.0" fill="none" opacity="0.35"/>
+
+    <!-- Großer Kupferbogen — obere Hälfte, Uhrzeigerrichtung -->
+    <path d="M 50 176 A 120 120 0 0 1 290 176"
+          stroke="#B5632A" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+
+    <!-- Innerer feiner Kupferbogen — echo -->
+    <path d="M 82 176 A 88 88 0 0 1 258 176"
+          stroke="#B5632A" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0.4"/>
+
+    <!-- Mittelpunkt -->
+    <circle cx="170" cy="176" r="7" fill="#B5632A"/>
+    <circle cx="170" cy="176" r="3.5" fill="#F7F1E8"/>
+
+    <!-- Vertikale Mittelachse — Ink, faint -->
+    <line x1="170" y1="36" x2="170" y2="316"
+          stroke="#352E28" stroke-width="0.7" opacity="0.18"/>
+
+    <!-- Endpunkte des Bogens — Copper dots -->
+    <circle cx="50" cy="176" r="3.5" fill="#B5632A" opacity="0.7"/>
+    <circle cx="290" cy="176" r="3.5" fill="#B5632A" opacity="0.7"/>
+
+    <!-- Unterer Ink-Streifen — horizontale Basis -->
+    <line x1="30" y1="316" x2="310" y2="316"
+          stroke="#352E28" stroke-width="1.0" opacity="0.22"/>
+
+    <!-- Accent dot — Nordstern, oben rechts am Bogen -->
+    <circle cx="250" cy="86" r="4.5" fill="#B5632A"/>
+  </g>
+
+  <!-- ── WORDMARK ── -->
+  <g id="wordmark" transform="translate(416, 60)">
+
+    <!-- Wordmark: "offyx" — groß, elegant -->
+    <text x="0" y="260"
+          font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
+          font-size="148"
+          font-weight="400"
+          fill="#352E28"
+          letter-spacing="-4"
+          text-anchor="start">offyx</text>
+
+    <!-- Copper underline accent — nur unter "off" -->
+    <rect x="2" y="275" width="238" height="2" fill="#B5632A"/>
+    <!-- Faint extension -->
+    <rect x="240" y="275" width="268" height="2" fill="#352E28" opacity="0.12"/>
+
+    <!-- Subtitle: zwei Zeilen, Work Sans -->
+    <text x="4" y="318"
+          font-family="'Work Sans', Helvetica, Arial, sans-serif"
+          font-size="20"
+          font-weight="300"
+          fill="#9B8E82"
+          letter-spacing="4"
+          text-anchor="start">Virtual Office · Berlin</text>
+
+    <!-- Rechte Seite: Ink-Label -->
+    <text x="4" y="356"
+          font-family="'Work Sans', Helvetica, Arial, sans-serif"
+          font-size="16"
+          font-weight="400"
+          fill="#B5632A"
+          letter-spacing="3"
+          text-anchor="start">Laubacher Str. 44</text>
+  </g>
+</svg>

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 512" fill="none">
+  <!--
+    offyx — Draft v2-04: Siegel & Schrift
+    Das bestehende Siegel-Icon (reduziert) + die neue kursive Schrift.
+    Verbindet die vertraute Marke mit der neuen Eleganz.
+  -->
+
+  <!-- Cream-Hintergrund -->
+  <rect width="1024" height="512" fill="#FBF7F1"/>
+
+  <!-- ── Icon: Reduziertes Siegel (bestehende Marke) ── -->
+  <g id="icon" transform="translate(238, 186)">
+    <!-- Äußerer Kreis: Ink -->
+    <circle cx="70" cy="70" r="68"
+            stroke="#352E28" stroke-width="2.5" fill="none"/>
+    <!-- Mittelring: Copper, dezent -->
+    <circle cx="70" cy="70" r="40"
+            stroke="#B5632A" stroke-width="1.8" fill="none" opacity="0.5"/>
+    <!-- Mittelpunkt: Copper -->
+    <circle cx="70" cy="70" r="16" fill="#B5632A"/>
+    <!-- Akzentpunkt oben rechts: der Nordstern -->
+    <circle cx="118" cy="22" r="8" fill="#B5632A"/>
+  </g>
+
+  <!-- ── Wordmark: kursiv ── -->
+  <text x="432" y="292"
+        font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
+        font-style="italic"
+        font-size="128"
+        font-weight="400"
+        fill="#352E28"
+        letter-spacing="-2"
+        text-anchor="start">offyx</text>
+</svg>

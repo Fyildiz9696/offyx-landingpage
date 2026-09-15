@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 512" fill="none">
+  <!--
+    offyx — Draft v2-08: Der Descender
+    Die Unterlänge des "y" wird zur Copper-Schnörkel-Linie,
+    die unter dem ganzen Wort ausläuft.
+    Der Buchstabe selbst wird zur Dekoration.
+  -->
+
+  <!-- Cream-Hintergrund -->
+  <rect width="1024" height="512" fill="#FBF7F1"/>
+
+  <!-- Wordmark -->
+  <text x="512" y="290"
+        font-family="'Playfair Display', Georgia, 'Times New Roman', serif"
+        font-style="italic"
+        font-size="150"
+        font-weight="400"
+        fill="#352E28"
+        letter-spacing="-2"
+        text-anchor="middle">offyx</text>
+
+  <!-- Copper-Flourish: beginnt am Ende der y-Unterlänge (~x=590),
+       läuft nach links unter dem Wort aus, wird dabei dünner -->
+  <path d="M 592 330
+           C 520 352, 420 358, 346 350
+           C 342 350, 341 352, 345 353
+           C 420 363, 520 357, 592 340
+           Z"
+        fill="#B5632A" opacity="0.85"/>
+
+  <!-- Kleiner Copper-Punkt am Ursprung — verbindet Flourish mit dem y -->
+  <circle cx="594" cy="335" r="5" fill="#B5632A"/>
+</svg>

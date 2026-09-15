@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>offyx — Logo Drafts (alle 10)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg:      #F7F1E8;
+    --surface: #FBF7F1;
+    --ink:     #352E28;
+    --muted:   #9B8E82;
+    --copper:  #B5632A;
+    --line:    rgba(53,46,40,0.14);
+  }
+  body {
+    font-family: 'Work Sans', Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    padding: 3rem 2.5rem;
+  }
+  body.dark {
+    --bg: #1E1714; --surface: #2A2420; --line: rgba(251,247,241,0.1);
+    background: #1E1714; color: #FBF7F1;
+  }
+
+  .page-header {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    margin-bottom: 2.5rem; padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .page-header h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 1.7rem; font-weight: 400;
+  }
+  .page-header h1 em { font-style: italic; color: var(--copper); }
+  .page-header small { display:block; margin-top:5px; font-size:0.76rem; color:var(--muted); letter-spacing:.04em; }
+  .toggle-btn {
+    margin-top:4px; padding:8px 18px;
+    border:1px solid var(--line); border-radius:999px;
+    background:transparent; color:inherit; cursor:pointer;
+    font-family:'Work Sans',sans-serif; font-size:.78rem; font-weight:500; letter-spacing:.04em;
+  }
+  .toggle-btn:hover { border-color:var(--copper); color:var(--copper); }
+
+  .ci-strip {
+    display:flex; gap:2rem; flex-wrap:wrap; align-items:center;
+    margin-bottom:2.5rem; padding:1.1rem 1.4rem;
+    border:1px solid var(--line); border-radius:10px;
+    font-size:.78rem; color:var(--muted);
+  }
+  .ci-item { display:flex; align-items:center; gap:7px; }
+  .ci-swatch { width:13px; height:13px; border-radius:50%; border:1px solid rgba(53,46,40,.2); flex-shrink:0; }
+
+  .batch-label {
+    font-size:.68rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--copper); margin:2.5rem 0 1.2rem;
+    padding-bottom:.7rem; border-bottom:1px solid var(--line);
+  }
+
+  .grid {
+    display:grid;
+    grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+    gap:2rem;
+  }
+  .card {
+    border:1px solid var(--line); border-radius:14px; overflow:hidden;
+    transition:transform .2s, box-shadow .2s;
+  }
+  .card:hover { transform:translateY(-2px); box-shadow:0 8px 32px rgba(53,46,40,.08); }
+  .card.full { grid-column: 1 / -1; }
+
+  .card-preview {
+    display:flex; align-items:center; justify-content:center;
+    min-height:270px; padding:2.5rem 2rem;
+    background:var(--surface);
+  }
+  body.dark .card-preview { background:#2A2420; }
+  .card-preview.no-bg { background:transparent !important; }
+  .card-preview img { max-width:100%; max-height:230px; }
+
+  .card-meta {
+    padding:1rem 1.3rem 1.2rem;
+    background:var(--bg);
+    border-top:1px solid var(--line);
+  }
+  body.dark .card-meta { background:#1a1714; }
+  .card-meta .num { font-size:.68rem; font-weight:600; letter-spacing:.08em; color:var(--copper); margin-bottom:3px; text-transform:uppercase; }
+  .card-meta h2 { font-family:'Playfair Display',Georgia,serif; font-size:1rem; font-weight:400; margin-bottom:5px; }
+  .card-meta h2 em { font-style:italic; color:var(--copper); }
+  .card-meta p { font-size:.77rem; font-weight:300; color:var(--muted); line-height:1.6; }
+
+  .badge-new {
+    display:inline-block; margin-left:8px;
+    padding:2px 8px; background:rgba(181,99,42,.12);
+    color:var(--copper); font-size:.65rem; font-weight:600;
+    letter-spacing:.06em; text-transform:uppercase; border-radius:999px;
+    border:1px solid rgba(181,99,42,.3); vertical-align:middle;
+  }
+</style>
+</head>
+<body class="light">
+
+<div class="page-header">
+  <div>
+    <h1><em>offyx</em> — Logo Drafts <span style="font-size:1rem;opacity:.4">· 10 Konzepte</span></h1>
+    <small>fyAI Solutions · 2026 · CI: #352E28 · #B5632A · Playfair Display · Work Sans</small>
+  </div>
+  <button class="toggle-btn" id="bgToggle">🌙 Dunkel</button>
+</div>
+
+<div class="ci-strip">
+  <span class="ci-item"><span class="ci-swatch" style="background:#352E28"></span> Ink #352E28</span>
+  <span class="ci-item"><span class="ci-swatch" style="background:#B5632A"></span> Copper #B5632A</span>
+  <span class="ci-item"><span class="ci-swatch" style="background:#FBF7F1;border-color:rgba(53,46,40,.25)"></span> Cream #FBF7F1</span>
+  <span class="ci-item"><span class="ci-swatch" style="background:#F7F1E8;border-color:rgba(53,46,40,.25)"></span> Paper #F7F1E8</span>
+  <span class="ci-item" style="margin-left:.5rem">🔤 Playfair Display 400 · Work Sans 300–600</span>
+</div>
+
+<!-- ═══ BATCH 1 ═══ -->
+<div class="batch-label">Entwürfe 01–05 — Klassische Komposition (Icon links · Wordmark rechts)</div>
+<div class="grid">
+
+  <div class="card">
+    <div class="card-preview"><img src="drafts/draft-1.svg" alt="Draft 1"></div>
+    <div class="card-meta">
+      <div class="num">01</div>
+      <h2>Siegel <em>Verfeinert</em></h2>
+      <p>Weiterentwicklung des bestehenden Siegels. Kompass-Ticks, dreistufige Kupferringe, Nordstern-Akzentpunkt. Organisch verbessert, ohne zu brechen.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-preview"><img src="drafts/draft-2.svg" alt="Draft 2"></div>
+    <div class="card-meta">
+      <div class="num">02</div>
+      <h2>Letterpress <em>Badge</em></h2>
+      <p>Rechteckiges Buchplatten-Siegel mit doppeltem Ink-Rahmen und Copper-Querregeln. Berliner Kanzleischild-Ästhetik.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-preview"><img src="drafts/draft-3.svg" alt="Draft 3"></div>
+    <div class="card-meta">
+      <div class="num">03</div>
+      <h2>Kupfer<em>bogen</em></h2>
+      <p>Minimaler Kupfer-Halbkreisbogen als Icon-Mark. Copper-Unterstreichung der ff-Ligatur. Maximale Eleganz, minimale Mittel.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-preview"><img src="drafts/draft-4.svg" alt="Draft 4"></div>
+    <div class="card-meta">
+      <div class="num">04</div>
+      <h2>Raute <em>Siegel</em></h2>
+      <p>Rotiertes Quadrat (Raute) als Siegel — drei konzentrische Ebenen, Kupfer-Mittelkreis, Akzentpunkte an allen vier Spitzen.</p>
+    </div>
+  </div>
+
+  <div class="card full">
+    <div class="card-preview"><img src="drafts/draft-5.svg" alt="Draft 5"></div>
+    <div class="card-meta">
+      <div class="num">05</div>
+      <h2>Reine <em>Typografie</em></h2>
+      <p>Kein Symbol — die Playfair-Typografie ist die Marke. Vertikaler Copper-Balken als Kompositionslinie, präzise Horizontalregeln, ff-Ligatur-Unterstreichung.</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══ BATCH 2 ═══ -->
+<div class="batch-label">Entwürfe 06–10 — Out of the Box <span class="badge-new">Neu</span></div>
+<div class="grid">
+
+  <div class="card">
+    <div class="card-preview"><img src="drafts/draft-6.svg" alt="Draft 6 — Tintentropfen"></div>
+    <div class="card-meta">
+      <div class="num">06</div>
+      <h2>Tinten<em>tropfen</em></h2>
+      <p>Organischer Tintentropfen statt Geometrie — "Papier & Tinte" wörtlich genommen. Copper-Glanzreflexion, Aufprall-Ringe. Erstmals keine Symmetrie.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-preview no-bg"><img src="drafts/draft-7.svg" alt="Draft 7 — Blocksatz"></div>
+    <div class="card-meta">
+      <div class="num">07</div>
+      <h2>Block<em>satz</em></h2>
+      <p>Kein separates Icon. Gespaltenes Farbfeld: Ink links / Paper rechts. "offyx" überspannt die Grenzlinie — Cream auf Ink, Ink auf Paper. Radikale Inversion.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-preview"><img src="drafts/draft-8.svg" alt="Draft 8 — Stadtplan"></div>
+    <div class="card-meta">
+      <div class="num">08</div>
+      <h2>Stadt<em>plan</em></h2>
+      <p>Berliner Stadtplan-Raster als Icon: unregelmäßige Blockparzellen wie ein echter Kiez-Ausschnitt. Copper-Block markiert "Laubacher Str." Referenz auf die physische Adresse.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-preview"><img src="drafts/draft-9.svg" alt="Draft 9 — Kolophon"></div>
+    <div class="card-meta">
+      <div class="num">09</div>
+      <h2>Kolophon-<em>Stern</em></h2>
+      <p>6-zackiger Asterisk aus alten Druckereizeichen — Buchornamentik, Fußnotenzeichen, Verlagsmarken. Kupfer-Strahlen, Ink-Rahmenkreis. Typografisch, einzigartig.</p>
+    </div>
+  </div>
+
+  <div class="card full">
+    <div class="card-preview"><img src="drafts/draft-10.svg" alt="Draft 10 — Pinselstrich"></div>
+    <div class="card-meta">
+      <div class="num">10</div>
+      <h2>Pinsel<em>strich</em></h2>
+      <p>Vertikale Komposition — bricht das Icon-links/Wordmark-rechts-Schema vollständig. Kupfer-Kalligrafiestrich oben als Kopfzeichen. Wordmark zentriert darunter. Human, organisch, warm.</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  document.getElementById('bgToggle').addEventListener('click', function() {
+    document.body.classList.toggle('dark');
+    this.textContent = document.body.classList.contains('dark') ? '☀️ Hell' : '🌙 Dunkel';
+  });
+</script>
+</body>
+</html>
