@@ -6,6 +6,7 @@
  * Cloudflare Pages: funktioniert out of the box.
  */
 import PageLayout from "@layouts/PageLayout.astro";
+import { url } from "@utils/url";
 import site from "@data/site";
 ---
 
@@ -24,9 +25,9 @@ import site from "@data/site";
       </p>
       <nav class="error-links" aria-label="Hilfreiche Links">
         <ul role="list">
-          <li><a href="/" class="btn btn--primary">Zur Startseite</a></li>
-          <li><a href="/#services" class="btn btn--outline">Unsere Leistungen</a></li>
-          <li><a href="/#contact" class="btn btn--outline">Kontakt aufnehmen</a></li>
+          <li><a href={url()} class="btn btn--primary">Zur Startseite</a></li>
+          <li><a href={url("#services")} class="btn btn--outline">Unsere Leistungen</a></li>
+          <li><a href={url("#contact")} class="btn btn--outline">Kontakt aufnehmen</a></li>
         </ul>
       </nav>
       <p class="error-contact">

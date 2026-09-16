@@ -4,6 +4,7 @@
  */
 import { Icon } from "astro-icon/components";
 import site from "@data/site";
+import { asset, url } from "@utils/url";
 
 const socialLinks = Object.entries(site.social).filter(([_, url]) => url);
 const currentYear = new Date().getFullYear();
@@ -24,11 +25,11 @@ const socialIconMap: Record<string, string> = {
   <div class="container">
     <div class="footer__grid">
       <div class="footer__brand">
-        <a href="/" class="footer__logo" aria-label={`${site.company} — Startseite`}>
+        <a href={url()} class="footer__logo" aria-label={`${site.company} — Startseite`}>
           <!-- Logo: kursives "offyx." mit Copper-Punkt (freigegebenes PNG) -->
           <img
             class="footer__logo-img"
-            src="/images/logo.png"
+            src={asset("images/logo.png")}
             alt="offyx"
             width="77"
             height="32"
@@ -81,8 +82,8 @@ const socialIconMap: Record<string, string> = {
     <div class="footer__bottom">
       <p class="footer__copy">&copy; {currentYear} {site.company}</p>
       <nav class="footer__legal" aria-label="Rechtliches">
-        <a href="/impressum">Impressum</a>
-        <a href="/datenschutz">Datenschutz</a>
+        <a href={url("impressum")}>Impressum</a>
+        <a href={url("datenschutz")}>Datenschutz</a>
       </nav>
     </div>
   </div>

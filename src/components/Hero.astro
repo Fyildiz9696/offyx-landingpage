@@ -5,6 +5,7 @@
  * Kein Secondary-Link, hoher Kontrast im Finder
  */
 import site from "@data/site";
+import { asset } from "@utils/url";
 
 const { hero } = site;
 const hasBackground = !!hero.backgroundImage;
@@ -16,7 +17,7 @@ const hasBackground = !!hero.backgroundImage;
 >
   {hasBackground && (
     <div class="hero__bg">
-      <img src={hero.backgroundImage} alt="offyx Coworking Space Berlin – Laubacher Straße 44" loading="eager" />
+      <img src={asset(hero.backgroundImage)} alt="offyx Coworking Space Berlin – Laubacher Straße 44" loading="eager" />
     </div>
   )}
 

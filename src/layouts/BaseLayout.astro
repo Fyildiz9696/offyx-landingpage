@@ -7,6 +7,7 @@
  */
 import site from "@data/site";
 import theme from "@data/theme";
+import { asset } from "@utils/url";
 import "../styles/global.css";
 
 interface Props {
@@ -156,9 +157,9 @@ const cssVars = `
     {site.verification?.bing && <meta name="msvalidate.01" content={site.verification.bing} />}
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/x-icon" href={asset("favicon.ico")} />
+    <link rel="icon" type="image/png" sizes="32x32" href={asset("favicon.png")} />
+    <link rel="apple-touch-icon" sizes="180x180" href={asset("apple-touch-icon.png")} />
 
     <!-- Google Fonts: Playfair Display + Work Sans (paper-ink theme) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -166,7 +167,7 @@ const cssVars = `
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
     <!-- Sitemap -->
-    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="sitemap" href={asset("sitemap-index.xml")} />
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

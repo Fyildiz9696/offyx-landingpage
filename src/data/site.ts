@@ -69,10 +69,9 @@ const site: SiteData = {
     { days: "Mo–Fr", hours: "08:00–20:00 Uhr" },
   ],
 
-  social: {
-    instagram: "https://instagram.com/offyx.berlin",
-    linkedin: "https://linkedin.com/company/offyx",
-  },
+  // Keine Social-Media-Profile — Felder bleiben für spätere Nutzung definiert.
+  // Sobald eine URL gesetzt ist, erscheint der Button automatisch im Footer.
+  social: {},
 
   nav: [
     { label: "Angebot", href: "#services" },

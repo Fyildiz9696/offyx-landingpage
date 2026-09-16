@@ -6,6 +6,7 @@
 import PageLayout from "@layouts/PageLayout.astro";
 import ComparisonTabs from "@components/ComparisonTabs.astro";
 import site from "@data/site";
+import { url } from "@utils/url";
 ---
 
 <PageLayout title="Produkte" description="Alle Pakete von offyx im Detail: Geschäftsadresse, Virtual Office, Schließfach & Coworking.">
@@ -24,7 +25,7 @@ import site from "@data/site";
     <div class="container text-center">
       <h2 class="section-heading">Noch unsicher?</h2>
       <p class="section-intro" style="margin-inline: auto;">Nutze unseren Produktberater und finde in 30 Sekunden das richtige Paket.</p>
-      <a class="btn btn--primary" href="/#advisor">Zum Produktberater</a>
+      <a class="btn btn--primary" href={url("#advisor")}>Zum Produktberater</a>
     </div>
   </section>
 </PageLayout>

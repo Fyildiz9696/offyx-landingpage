@@ -9,7 +9,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "deploy": "NODE_ENV=production astro build && rsync -a --delete dist/ docs/"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.1",
